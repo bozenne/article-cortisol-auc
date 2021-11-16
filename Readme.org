@@ -1,1 +1,3 @@
-TO BE DONE
+Contain the R code (folder) code used to generate the results for the
+cortisol AUC article.
+

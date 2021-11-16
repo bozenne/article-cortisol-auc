@@ -3,9 +3,9 @@
 ## Author: Brice Ozenne
 ## Created: nov 16 2021 (16:53) 
 ## Version: 
-## Last-Updated: nov 16 2021 (21:32) 
+## Last-Updated: nov 16 2021 (22:18) 
 ##           By: Brice Ozenne
-##     Update #: 18
+##     Update #: 21
 ##----------------------------------------------------------------------
 ## 
 ### Commentary: 
@@ -17,6 +17,7 @@
 
 library(xtable)
 library(data.table)
+library(officer)
 
 ## * Path
 path <- "." ## put path to Github directory
@@ -110,6 +111,15 @@ AUCi.tablePerf
 ## 23:                             0-30-60     -3          -166            105  79        0.98
 ## 24:                             0-45-60     -8          -241            177 116        0.95
 ##                dataset method timepoint median 2.5% quantile 97.5% quantile IQR correlation
+
+## ** docx
+myTable2.doc <- body_add_table(x = read_docx(), 
+                               value =  AUCg.tablePerf)
+myTable2.doc <- body_add_break(myTable2.doc)
+myTable2.doc <- body_add_table(x = myTable2.doc, 
+                               value =  AUCi.tablePerf)
+myTable2.doc <- body_end_section_landscape(myTable2.doc)
+print(myTable2.doc, target = file.path(path.report,"/Table2.docx"))
 
 ## ** latex
 print.tablePerf <- copy(AUCg.tablePerf)

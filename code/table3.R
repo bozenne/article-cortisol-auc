@@ -3,9 +3,9 @@
 ## Author: Brice Ozenne
 ## Created: nov 16 2021 (18:18) 
 ## Version: 
-## Last-Updated: nov 16 2021 (18:35) 
+## Last-Updated: nov 16 2021 (22:18) 
 ##           By: Brice Ozenne
-##     Update #: 8
+##     Update #: 10
 ##----------------------------------------------------------------------
 ## 
 ### Commentary: 
@@ -15,6 +15,7 @@
 ## 
 ### Code:
 
+library(officer)
 library(xtable)
 library(data.table)
 
@@ -50,6 +51,18 @@ ls.table3
 ## AUC with 5 samples 1715.996   594.2885 0.005899568 519.7552 2912.237
 ## AUC with 3 samples 1676.618   646.6305 0.012719381 375.0186 2978.218
 ## LM with 3 samples  1716.492   656.8608 0.012154163 393.5063 3039.478
+
+## ** docx
+myTable3.doc <- body_add_table(x = read_docx(), 
+                               value =  as.data.frame(ls.table3[[1]]))
+myTable3.doc <- body_add_break(myTable3.doc)
+myTable3.doc <- body_add_table(x = myTable3.doc, 
+                               value =  as.data.frame(ls.table3[[2]]))
+myTable3.doc <- body_add_break(myTable3.doc)
+myTable3.doc <- body_add_table(x = myTable3.doc, 
+                               value =  as.data.frame(ls.table3[[3]]))
+myTable3.doc <- body_end_section_landscape(myTable3.doc)
+print(myTable3.doc, target = file.path(path.report,"/Table3.docx"))
 
 ## ** latex
 lapply(ls.table3, xtable, digits = 3)
