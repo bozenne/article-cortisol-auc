@@ -3,9 +3,9 @@
 ## Author: Brice Ozenne
 ## Created: nov 16 2021 (10:52) 
 ## Version: 
-## Last-Updated: nov 16 2021 (18:32) 
+## Last-Updated: nov 16 2021 (21:15) 
 ##           By: Brice Ozenne
-##     Update #: 18
+##     Update #: 21
 ##----------------------------------------------------------------------
 ## 
 ### Commentary: 
@@ -19,7 +19,7 @@ library(ggplot2)
 library(data.table)
 
 ## * Path
-path <- "" ## put path to Github directory
+path <- "." ## put path to Github directory
 path.code <- file.path(path,"code")
 path.data <- file.path(path,"source")
 path.report <- file.path(path,"report")
@@ -71,9 +71,11 @@ gg.AUCi.cor <- gg.AUCi.cor + geom_text(data = AUCi0.tablePerf[dataset == "Case s
 gg.AUCi.cor
 
 ## * export
-if(FALSE){
-    ggsave(gg.AUCg.cor, filename = file.path(path.results,"figure1a.pdf"), width = 13, device = cairo_pdf)
-    ggsave(gg.AUCi.cor, filename = file.path(path.results,"figure1b.pdf"), width = 13, device = cairo_pdf)
-}
+ggsave(gg.AUCg.cor, filename = file.path(path.results,"figure1a.pdf"), width = 13, device = cairo_pdf)
+ggsave(gg.AUCi.cor, filename = file.path(path.results,"figure1b.pdf"), width = 13, device = cairo_pdf)
+
+ggsave(gg.AUCg.cor, filename = file.path(path.report,"figures/AUCg-perf-cor.pdf"), width = 13, device = cairo_pdf)
+ggsave(gg.AUCi.cor, filename = file.path(path.report,"figures/AUCi-perf-cor.pdf"), width = 13, device = cairo_pdf)
+
 ##----------------------------------------------------------------------
 ### figure1.R ends here

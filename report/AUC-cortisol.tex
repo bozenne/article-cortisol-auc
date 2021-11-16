@@ -1,4 +1,4 @@
-% Created 2021-11-16 ti 11:29
+% Created 2021-11-16 ti 21:31
 % Intended LaTeX compiler: pdflatex
 \documentclass[12pt]{article}
 
@@ -104,7 +104,7 @@ linkcolor=[rgb]{0,0,0.5},
 \maketitle
 
 \section{Background}
-\label{sec:org199d56b}
+\label{sec:org7fb3156}
 
 Cortisol awakening response (CAR) describes the period of sharp
 increase in cortisol secretion in the first 60 min after awakening. It
@@ -145,7 +145,7 @@ estimation of the \(AUC_I\).
 \FloatBarrier
 
 \section{Aim}
-\label{sec:orgef2d5cd}
+\label{sec:org054340e}
 
 The project's aim is to assess the reliability of an estimator of the
 CAR based on only 3-samples (instead of the usual 5). Three aspects
@@ -208,10 +208,10 @@ estimated using 5-measurements as a proxy for the "truth".
 \end{itemize}
 
 \section{Method}
-\label{sec:orge2161f7}
+\label{sec:org948482b}
 
 \subsection{Training data}
-\label{sec:orge6704f9}
+\label{sec:org3e28646}
 
 The full dataset contains 984 series of cortisol measurements both
 from healthy individuals and patients. The following exclusion
@@ -265,7 +265,7 @@ following measurements) were also excluded.
 \end{figure} 
 
 \subsection{Statistical analysis}
-\label{sec:org449381c}
+\label{sec:org88a1625}
 
 \textbf{Exploratory}: Identifing typical shapes of trajectories can help to
 decide which three samples to use. For instance if two trajectories
@@ -307,10 +307,10 @@ it is not well defined as it requires to divide by \(AUC_I\) (which
 may be null).
 
 \section{Results}
-\label{sec:orgb1a7631}
+\label{sec:orga620f1a}
 
 \subsection{Exploratory analysis}
-\label{sec:org3096066}
+\label{sec:orgc708a82}
 
 As shown in \autoref{tab:lcmm}, all LCMM but one converged (common
 variance, 6 classes). Visual inspection of the class trajectories
@@ -345,7 +345,7 @@ problematic since these represent a non-neglectable proportion of the
 sample.
 
 \subsection{Evaluation of the estimators: 3 vs. 5-sample \(AUC_G\)}
-\label{sec:orgaac356e}
+\label{sec:orgf19610e}
 
 From the estimated coefficients of the linear regression
 (\autoref{tab:coeflm}), it appears that the trapezoidal rule tends to
@@ -411,7 +411,7 @@ to see when considering the relative error along the AUCg values
 \clearpage
 
 \subsection{Evaluation of the estimators: 3 vs. 5-sample \(AUC_I\)}
-\label{sec:org5d07299}
+\label{sec:orgacffde7}
 
 Results for the \(AUC_I\) are rather similar to the \(AUC_G\),
 e.g. see \autoref{fig:AUCi-perf-estimator},
@@ -437,9 +437,9 @@ since the \(AUC_G\) is larger (in absolute value) compared to the
 \clearpage
 
 \section{Application of the 3-sample AUC}
-\label{sec:orgba158f0}
+\label{sec:org5d00e3f}
 \subsection{Re-analysis of \citep{jakobsen2016brain}}
-\label{sec:org6e686ae}
+\label{sec:org805c46d}
 
 We will now replicate the study of Jakobsen et al (2016).
 
@@ -493,7 +493,7 @@ AUC. The effect seems a little bit attenuated and its estimation a bit
 less uncertain. Overall the p-values are very similar.
 
 \subsection{Re-analysis of Frokjaer et al 2014}
-\label{sec:org5c1aeb1}
+\label{sec:org7227952}
 
 We will now replicate the analysis of Frojkaer et al (2014).
 
@@ -541,7 +541,7 @@ leading to larger p-values.
 \clearpage
 
 \section{Conclusion}
-\label{sec:org5aa32ce}
+\label{sec:org2d09afe}
 
 We have shown that the best estimators of the \(AUC_G\) are:
 \begin{itemize}
@@ -589,7 +589,7 @@ trajectory (increasing, decreasing, V-shape).
 \clearpage 
 
 \section{Tables}
-\label{sec:orgb018d4a}
+\label{sec:org86169cf}
 
 \begin{table}[!h]
 \centering
@@ -690,16 +690,16 @@ The column IQR reflect the precision of the estimator (the lower the better).}
   \hline
 dataset & method & timepoint & median & q. 2.5\% & q. 97.5\% & IQR & cor \\ 
   \hline
-training & auc & 0-15-30 & -440.00 & -847.00 & -114.00 & 256.00 & 0.90 \\ 
+training & auc & 0-15-30 & -440.00 & -847.00 & -114.00 & 256.00 & 0.90 \\ [1mm]
   (with CV) &  & 0-15-45 & -221.00 & -456.00 & -46.00 & 156.00 & 0.96 \\ 
    &  & 0-15-60 & -45.00 & -241.00 & 92.00 & 105.00 & 0.94 \\ 
    &  & 0-30-45 & -210.00 & -451.00 & -33.00 & 138.00 & 0.97 \\ 
    &  & 0-30-60 & -8.00 & -139.00 & 107.00 & 65.00 & 0.97 \\ 
-   &  & 0-45-60 & -36.00 & -248.00 & 105.00 & 118.00 & 0.93 \\ [1mm]
-   & lm & 0-15-30 & 8.00 & -199.00 & 173.00 & 99.00 & 0.73 \\ 
-   &  & 0-15-45 & 4.00 & -118.00 & 111.00 & 57.00 & 0.93 \\ 
+   &  & 0-45-60 & -36.00 & -248.00 & 105.00 & 118.00 & 0.93 \\ 
+   & lm & 0-15-30 & 8.00 & -199.00 & 173.00 & 99.00 & 0.94 \\ 
+   &  & 0-15-45 & 4.00 & -118.00 & 111.00 & 57.00 & 0.97 \\ 
    &  & 0-15-60 & 9.00 & -185.00 & 151.00 & 101.00 & 0.94 \\ 
-   &  & 0-30-45 & 2.00 & -119.00 & 119.00 & 64.00 & 0.93 \\ 
+   &  & 0-30-45 & 2.00 & -119.00 & 119.00 & 64.00 & 0.97 \\ 
    &  & 0-30-60 & -0.00 & -131.00 & 122.00 & 68.00 & 0.97 \\ 
    &  & 0-45-60 & 14.00 & -185.00 & 156.00 & 116.00 & 0.93 \\ [3mm]
   test set & auc & 0-15-30 & -463.00 & -1092.00 & -119.00 & 314.00 & 0.92 \\ 
@@ -708,10 +708,10 @@ training & auc & 0-15-30 & -440.00 & -847.00 & -114.00 & 256.00 & 0.90 \\
    &  & 0-30-45 & -231.00 & -528.00 & -44.00 & 167.00 & 0.97 \\ 
    &  & 0-30-60 & -12.00 & -182.00 & 97.00 & 78.00 & 0.98 \\ 
    &  & 0-45-60 & -62.00 & -299.00 & 119.00 & 118.00 & 0.95 \\ [1mm]
-   & lm & 0-15-30 & 10.00 & -232.00 & 143.00 & 113.00 & 0.73 \\ 
-   &  & 0-15-45 & 3.00 & -115.00 & 116.00 & 61.00 & 0.94 \\ 
+   & lm & 0-15-30 & 10.00 & -232.00 & 143.00 & 113.00 & 0.94 \\ 
+   &  & 0-15-45 & 3.00 & -115.00 & 116.00 & 61.00 & 0.98 \\ 
    &  & 0-15-60 & 11.00 & -186.00 & 160.00 & 101.00 & 0.96 \\ 
-   &  & 0-30-45 & -8.00 & -149.00 & 103.00 & 71.00 & 0.94 \\ 
+   &  & 0-30-45 & -8.00 & -149.00 & 103.00 & 71.00 & 0.98 \\ 
    &  & 0-30-60 & -3.00 & -166.00 & 105.00 & 79.00 & 0.98 \\ 
    &  & 0-45-60 & -8.00 & -241.00 & 177.00 & 116.00 & 0.95 \\ 
    \hline
@@ -763,7 +763,7 @@ AUC with 5 samples & 1715.996 & 594.288 & 0.006 & 519.755 & 2912.237 \\
 \clearpage
 
 \section{References}
-\label{sec:orgceee8c1}
+\label{sec:orgae964fd}
 \begingroup
 \renewcommand{\section}[2]{}
 \bibliographystyle{apalike}
@@ -877,7 +877,7 @@ dtW.fulldata[is.na(AUCg),.(id2,cortisol_t0,cortisol_t15,cortisol_t30,cortisol_t4
 \section{Appendix: calculation of the CAR using the trapezoidal rule}
 \label{appendix:trapezRule}
 \subsection{AUCg}
-\label{sec:org117f6cd}
+\label{sec:orga31db4d}
 
 For subjects with regular measurement times, e.g.:
 \lstset{language=r,label= ,caption= ,captionpos=b,numbers=none}
@@ -966,7 +966,7 @@ range(dtLR.HC$AUCg-dtLR.HC$AUCg.pracma, na.rm=TRUE)
 \end{verbatim}
 
 \subsection{AUCb}
-\label{sec:orgac2e211}
+\label{sec:orgefaeea0}
 
 Consider the individual:
 \lstset{language=r,label= ,caption= ,captionpos=b,numbers=none}
@@ -1014,7 +1014,7 @@ range(dtLR.HC$AUCi-dtLR.HC$AUCi.pracma, na.rm=TRUE)
 \section{Appendix: bias-correction using the linear regression}
 \label{appendix:lm}
 \subsection{Example}
-\label{sec:org768dd4c}
+\label{sec:orgf327e16}
 We start with an example. Consider the following individual:
 \lstset{language=r,label= ,caption= ,captionpos=b,numbers=none}
 \begin{lstlisting}
@@ -1065,7 +1065,7 @@ estimate + 48.96 + 0.01 * 2.8 * 7.5 + 0.07 * 1.8 * 15 + 3.14 * 2.9 * 7.5
 While not perfect, the is much closer to the value obtained with 5 samples.
 
 \subsection{Theory}
-\label{sec:orga4ec9c1}
+\label{sec:org28635e9}
 
 Consider:
 \begin{itemize}

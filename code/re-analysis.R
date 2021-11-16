@@ -3,9 +3,9 @@
 ## Author: Brice Ozenne
 ## Created: sep 10 2021 (09:20) 
 ## Version: 
-## Last-Updated: nov 16 2021 (18:32) 
+## Last-Updated: nov 16 2021 (21:21) 
 ##           By: Brice Ozenne
-##     Update #: 82
+##     Update #: 88
 ##----------------------------------------------------------------------
 ## 
 ### Commentary: 
@@ -16,7 +16,7 @@
 
 
 ## * path
-path <- "" ## put path to Github directory
+path <- "." ## put path to Github directory
 path.code <- file.path(path,"code")
 path.data <- file.path(path,"source")
 path.report <- file.path(path,"report")
@@ -198,7 +198,6 @@ ggCortisol.Jak <- ggplot(dtL.Jak, aes(x=sample,y=cortisol,group=id,color=id))
 ggCortisol.Jak <- ggCortisol.Jak + geom_point() + geom_line()
 ggCortisol.Jak
 
-## ggsave(ggarrange(ggTime.Jak, ggCortisol.Jak, common.legend = TRUE, legend = "bottom"), filename = file.path(path.report,"figures","gg-jak-descriptive.pdf"), width = 10)
 
 ## ** compute 3 point AUC
 AUC3W.Jak <- copy(calcAUCgi2(dtL.Jak))
@@ -219,8 +218,6 @@ ggError2.Jak <- ggplot(AUC3L.Jak, aes(x = pracma, y = error, color = method))
 ggError2.Jak <- ggError2.Jak + geom_point() + geom_smooth() + facet_wrap(~type, ncol = 1)
 ggError2.Jak
 
-##
-## ggsave(ggarrange(ggError.Jak, ggError2.Jak, common.legend = TRUE, legend = "bottom"), filename = file.path(path.report,"figures","gg-jak-errorAUC.pdf"), width = 10)
 ## AUC3L.Jak[method == "auc" & type=="AUCg", .(abs = range(error), relative = range(100*error/estimate))]
 ##       abs  relative
 ## 1: -66.35 -13.61165
@@ -415,7 +412,7 @@ ggCortisol.Fro <- ggplot(dtL.FroT, aes(x=sample,y=cortisol,group=id,color=id))
 ggCortisol.Fro <- ggCortisol.Fro + geom_point() + geom_line()
 ggCortisol.Fro
 
-## ggsave(ggarrange(ggTime.Fro, ggCortisol.Fro, common.legend = TRUE, legend = "bottom"), filename = file.path(path.report,"figures","gg-fro-descriptive.pdf"), width = 10)
+
 
 ## ** compute 3 point AUC
 AUC3W.FroT <- copy(calcAUCgi2(dtL.FroT))
@@ -437,7 +434,6 @@ ggError2.Fro <- ggplot(AUC3L.FroT, aes(x = pracma, y = error, color = method))
 ggError2.Fro <- ggError2.Fro + geom_point() + geom_smooth() + facet_wrap(~type, ncol = 1)
 ggError2.Fro
 
-## ggsave(ggarrange(ggError.Fro, ggError2.Fro, common.legend = TRUE, legend = "bottom"), filename = file.path(path.report,"figures","gg-fro-errorAUC.pdf"), width = 10)
 ## AUC3L.FroT[method == "auc" & type=="AUCg", .(abs = range(error), relative = range(100*error/estimate))]
 ##       abs  relative
 ## 1: -501.0 -38.21510
@@ -492,14 +488,15 @@ table.FroT <- cbind(rbind("AUC with 5 samples" = summary(e.lm)$coef["DASB",c("Es
 xtable(table.FroT, digits = 3)
 
 ## * export
-if(FALSE){
+ggsave(ggarrange(ggTime.Jak, ggCortisol.Jak, common.legend = TRUE, legend = "bottom"), filename = file.path(path.report,"figures","gg-jak-descriptive.pdf"), width = 10)
+ggsave(ggarrange(ggError.Jak, ggError2.Jak, common.legend = TRUE, legend = "bottom"), filename = file.path(path.report,"figures","gg-jak-errorAUC.pdf"), width = 10)
+ggsave(ggarrange(ggTime.Fro, ggCortisol.Fro, common.legend = TRUE, legend = "bottom"), filename = file.path(path.report,"figures","gg-fro-descriptive.pdf"), width = 10)
+ggsave(ggarrange(ggError.Fro, ggError2.Fro, common.legend = TRUE, legend = "bottom"), filename = file.path(path.report,"figures","gg-fro-errorAUC.pdf"), width = 10)
 
-    saveRDS(list(Jak2016_pal = table.PalJak,
-                 Jak2016_hip = table.HipJak,
-                 Fro2014 = table.FroT),
-            file = file.path(path.results,"ls-table3.rds"))
-
-}
+saveRDS(list(Jak2016_pal = table.PalJak,
+             Jak2016_hip = table.HipJak,
+             Fro2014 = table.FroT),
+        file = file.path(path.results,"ls-table3.rds"))
 
 ##----------------------------------------------------------------------
 ### re-analysis.R ends here

@@ -3,9 +3,9 @@
 ## Author: Brice Ozenne
 ## Created: maj 11 2020 (10:01) 
 ## Version: 
-## Last-Updated: nov 16 2021 (18:32) 
+## Last-Updated: nov 16 2021 (21:18) 
 ##           By: Brice Ozenne
-##     Update #: 115
+##     Update #: 122
 ##----------------------------------------------------------------------
 ## 
 ### Commentary: 
@@ -16,7 +16,7 @@
 ### Code:
 
 ## * path
-path <- "" ## put path to Github directory
+path <- "." ## put path to Github directory
 path.code <- file.path(path,"code")
 path.data <- file.path(path,"source")
 path.report <- file.path(path,"report")
@@ -183,16 +183,11 @@ gg_traj <- gg_traj + scale_colour_manual(name = "Excluded",
                                          labels = c("TRUE" = "Yes", "FALSE" = "No"),
                                          values = c("TRUE" = "red",
                                                     "FALSE" = "darkgreen"))
-out <-  ggarrange(gg_traj, gg_traj + coord_cartesian(ylim = c(0,35)), ncol = 2, common.legend = TRUE, legend = "bottom")
-if(FALSE){
-    ggsave(out, filename = file.path(path.report,"cortisol-individual-alltraj.pdf"), width = 10, height = 5)
-}
+ggTrajInd <-  ggarrange(gg_traj, gg_traj + coord_cartesian(ylim = c(0,35)), ncol = 2, common.legend = TRUE, legend = "bottom")
 
-if(FALSE){
-    ##  file.remove(file.path(path.report,"cortisol-individual-trajectories.pdf"))
-    pdf(file.path(path.report,"cortisol-individual-traj.pdf"))
-    ## png(file.path(path.report,"cortisol-individual-trajectories.png"))
-}
+##  file.remove(file.path(path.report,"cortisol-individual-trajectories.pdf"))
+pdf(file.path(path.report,"figures/cortisol-individual-traj.pdf"))
+## png(file.path(path.report,"cortisol-individual-trajectories.png"))
 ls.groups25 <- lapply(1:ceiling(n.Id/25), function(iG){IdU[(25*(iG-1)+1):min(25*iG,n.Id)]})
 vec.ggIndiv <- vector(mode = "list", length = length(ls.groups25))
 for(iG in 1:length(ls.groups25)){ ## iG <- 4
@@ -205,10 +200,7 @@ for(iG in 1:length(ls.groups25)){ ## iG <- 4
                                                                                                               "FALSE" = "darkgreen"))
     print(vec.ggIndiv[[iG]])
 }
-
-if(FALSE){
-    dev.off()
-}
+dev.off()
 
 ## * clustering
 
@@ -271,12 +263,9 @@ if(FALSE){
     ggTraj_hetero <- ggTraj_hlme(ls.hlme2[[5]], color = "prob", facet = TRUE, nrow = 1)
     ggTraj_hetero2 <- ggTraj_hlme(ls.hlme2[[6]], color = "prob", facet = TRUE, nrow = 1)
 
-    out <- ggarrange(ggTraj_homo$plot + ggtitle("LCMM with 5 classes - common residual variance-covariance") + ylab("cortisol (nmol/L)"),
+    ggTrajLCMM <- ggarrange(ggTraj_homo$plot + ggtitle("LCMM with 5 classes - common residual variance-covariance") + ylab("cortisol (nmol/L)"),
                      ggTraj_hetero$plot + ggtitle("LCMM with 5 classes - group specific residual variance-covariance") + ylab("cortisol (nmol/L)"), nrow = 2)
     
-    ## export graph
-    ## ggsave(out, filename = file.path(path.results,"trajLCMM-5groups.pdf"), width = 13)
-
     ## cv
     compare.hlme <- summarytable(ls.hlme[[1]], bb = ls.hlme[[2]], ls.hlme[[3]], ls.hlme[[4]], ls.hlme[[5]], ls.hlme[[6]],
                                  which = c("G", "loglik", "conv", "npm", "AIC", "BIC", "SABIC", "entropy"))
@@ -413,28 +402,27 @@ gg.blandRerror <- gg.blandRerror + labs(color = "") + ylab("Relative difference 
 gg.blandRerror
 
 ## * export
-if(FALSE){
-    ## results
-    saveRDS(AUCg0.tablePerf, file = file.path(path.results,"AUCg-tablePerf.rds"))
-    saveRDS(AUCi0.tablePerf, file = file.path(path.results,"AUCi-tablePerf.rds"))
-    saveRDS(dt.evalPredictor, file = file.path(path.results,"dt-evalPredictor.rds"))
-    saveRDS(trainL.AUC, file = file.path(path.results,"trainL_AUC.rds"))
+## results
+saveRDS(AUCg0.tablePerf, file = file.path(path.results,"AUCg-tablePerf.rds"))
+saveRDS(AUCi0.tablePerf, file = file.path(path.results,"AUCi-tablePerf.rds"))
+saveRDS(dt.evalPredictor, file = file.path(path.results,"dt-evalPredictor.rds"))
+saveRDS(trainL.AUC, file = file.path(path.results,"trainL_AUC.rds"))
 
-    ## plots
-    ggsave(gg.error + ylab("Difference in AUCi (nmol.h/L)") + theme(legend.position = "bottom"), filename = file.path(path.report,"AUCi-perf-boxplot.pdf"), width = 13, height = 4.5)
-    ggsave(out.error, filename = file.path(path.report,"AUCg-perf-boxplot.pdf"), width = 13)
-    ggsave(gg.AUCg.cor, filename = file.path(path.report,"AUCg-perf-cor.pdf"), width = 13)
-    ggsave(gg.AUCi.cor, filename = file.path(path.report,"AUCi-perf-cor.pdf"), width = 13)
-    ggsave(gg.blandRerror, filename = file.path(path.report,"AUCg-perf-blandRelative.pdf"), width = 13)
+## plots
+ggsave(ggTrajInd, filename = file.path(path.report,"figures/cortisol-individual-alltraj.pdf"), width = 10, height = 5)
+ggsave(ggTrajLCMM, filename = file.path(path.report,"figures/trajLCMM-5groups.pdf"), width = 13)
+ggsave(gg.error + ylab("Difference in AUCi (nmol.h/L)") + theme(legend.position = "bottom"), filename = file.path(path.report,"figures/AUCi-perf-boxplot.pdf"), width = 13, height = 4.5)
+ggsave(out.error, filename = file.path(path.report,"figures/AUCg-perf-boxplot.pdf"), width = 13)
+ggsave(gg.AUCg.cor, filename = file.path(path.report,"figures/AUCg-perf-cor.pdf"), width = 13)
+ggsave(gg.AUCi.cor, filename = file.path(path.report,"figures/AUCi-perf-cor.pdf"), width = 13)
+ggsave(gg.blandRerror, filename = file.path(path.report,"figures/AUCg-perf-blandRelative.pdf"), width = 13)
 
 
-    ## training dataset
-    dtTrain <- dtLR.HC[,.(id2,sample,time,cortisol,AUCg.pracma,AUCi.pracma)]
-    dtTrain$id2 <- paste0("id",as.numeric(as.factor(dtTrain$id2)))
-    setnames(dtTrain,old="id2",new="id")
-    saveRDS(dtTrain, file = file.path(path.results,"input_calcAUCgi.rds"))
-
-}
+## training dataset
+dtTrain <- dtLR.HC[,.(id2,sample,time,cortisol,AUCg.pracma,AUCi.pracma)]
+dtTrain$id2 <- paste0("id",as.numeric(as.factor(dtTrain$id2)))
+setnames(dtTrain,old="id2",new="id")
+saveRDS(dtTrain, file = file.path(path.results,"input_calcAUCgi.rds"))
 
 ## * Sanity check
 if(FALSE){
