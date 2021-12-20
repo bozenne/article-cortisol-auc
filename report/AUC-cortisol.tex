@@ -1,4 +1,4 @@
-% Created 2021-11-16 ti 21:31
+% Created 2021-12-20 ma 15:55
 % Intended LaTeX compiler: pdflatex
 \documentclass[12pt]{article}
 
@@ -104,7 +104,7 @@ linkcolor=[rgb]{0,0,0.5},
 \maketitle
 
 \section{Background}
-\label{sec:org7fb3156}
+\label{sec:org01d9080}
 
 Cortisol awakening response (CAR) describes the period of sharp
 increase in cortisol secretion in the first 60 min after awakening. It
@@ -145,7 +145,7 @@ estimation of the \(AUC_I\).
 \FloatBarrier
 
 \section{Aim}
-\label{sec:org054340e}
+\label{sec:orgdc4f66a}
 
 The project's aim is to assess the reliability of an estimator of the
 CAR based on only 3-samples (instead of the usual 5). Three aspects
@@ -208,10 +208,10 @@ estimated using 5-measurements as a proxy for the "truth".
 \end{itemize}
 
 \section{Method}
-\label{sec:org948482b}
+\label{sec:org027d44d}
 
 \subsection{Training data}
-\label{sec:org3e28646}
+\label{sec:org84eae7d}
 
 The full dataset contains 984 series of cortisol measurements both
 from healthy individuals and patients. The following exclusion
@@ -265,7 +265,7 @@ following measurements) were also excluded.
 \end{figure} 
 
 \subsection{Statistical analysis}
-\label{sec:org88a1625}
+\label{sec:org1decb45}
 
 \textbf{Exploratory}: Identifing typical shapes of trajectories can help to
 decide which three samples to use. For instance if two trajectories
@@ -307,10 +307,10 @@ it is not well defined as it requires to divide by \(AUC_I\) (which
 may be null).
 
 \section{Results}
-\label{sec:orga620f1a}
+\label{sec:org7ad044f}
 
 \subsection{Exploratory analysis}
-\label{sec:orgc708a82}
+\label{sec:org1d02e9d}
 
 As shown in \autoref{tab:lcmm}, all LCMM but one converged (common
 variance, 6 classes). Visual inspection of the class trajectories
@@ -345,7 +345,7 @@ problematic since these represent a non-neglectable proportion of the
 sample.
 
 \subsection{Evaluation of the estimators: 3 vs. 5-sample \(AUC_G\)}
-\label{sec:orgf19610e}
+\label{sec:orgf97ec36}
 
 From the estimated coefficients of the linear regression
 (\autoref{tab:coeflm}), it appears that the trapezoidal rule tends to
@@ -411,7 +411,7 @@ to see when considering the relative error along the AUCg values
 \clearpage
 
 \subsection{Evaluation of the estimators: 3 vs. 5-sample \(AUC_I\)}
-\label{sec:orgacffde7}
+\label{sec:orgfd62623}
 
 Results for the \(AUC_I\) are rather similar to the \(AUC_G\),
 e.g. see \autoref{fig:AUCi-perf-estimator},
@@ -437,9 +437,9 @@ since the \(AUC_G\) is larger (in absolute value) compared to the
 \clearpage
 
 \section{Application of the 3-sample AUC}
-\label{sec:org5d00e3f}
+\label{sec:org7fb6e83}
 \subsection{Re-analysis of \citep{jakobsen2016brain}}
-\label{sec:org805c46d}
+\label{sec:org621c964}
 
 We will now replicate the study of Jakobsen et al (2016).
 
@@ -475,9 +475,7 @@ it varied between -13.61\% and +17.96\%. There was a tendency for a too
 low estimated value when using the 3-sample approach (-20.983,
 p=0.0339). There was no evidence that the error was AUC dependent for
 the AUCg (p=0.276) while there was rather strong evidence in favor of
-a linear trend for the AUCi (slope=0.1, p=0.002). There was no
-evidence for a systematic difference between the 3-sample AUC computed
-with \texttt{lm} and \texttt{auc} (p=0.92).
+a linear trend for the AUCi (slope=0.1, p=0.002). 
 
 \begin{figure}[!h]
 \centering
@@ -493,7 +491,7 @@ AUC. The effect seems a little bit attenuated and its estimation a bit
 less uncertain. Overall the p-values are very similar.
 
 \subsection{Re-analysis of Frokjaer et al 2014}
-\label{sec:org7227952}
+\label{sec:orgfa089de}
 
 We will now replicate the analysis of Frojkaer et al (2014).
 
@@ -524,8 +522,8 @@ discrepancy with the 5-sample AUC is shown on
 -38.21 and +54.97\%. 4 observations were driving the error; for the
 rest of the observations the error varied between -141 and +123.75
 (-24.32\% and 51.07\%). There was no evidence for a biased estimate when
-using the 3-sample approach (p=0.304) nor for a systematic difference
-between the 3-sample AUC computed with \texttt{lm} and \texttt{auc} (p=0.87).
+using the 3-sample approach (e.g. AUCi p=0.304, AUCg p=0.419 with the
+trapezoidal rule).
 
 \begin{figure}[!h]
 \centering
@@ -541,7 +539,7 @@ leading to larger p-values.
 \clearpage
 
 \section{Conclusion}
-\label{sec:org2d09afe}
+\label{sec:org89f2091}
 
 We have shown that the best estimators of the \(AUC_G\) are:
 \begin{itemize}
@@ -589,7 +587,7 @@ trajectory (increasing, decreasing, V-shape).
 \clearpage 
 
 \section{Tables}
-\label{sec:org86169cf}
+\label{sec:org8920f7b}
 
 \begin{table}[!h]
 \centering
@@ -763,7 +761,7 @@ AUC with 5 samples & 1715.996 & 594.288 & 0.006 & 519.755 & 2912.237 \\
 \clearpage
 
 \section{References}
-\label{sec:orgae964fd}
+\label{sec:org151372d}
 \begingroup
 \renewcommand{\section}[2]{}
 \bibliographystyle{apalike}
@@ -877,7 +875,7 @@ dtW.fulldata[is.na(AUCg),.(id2,cortisol_t0,cortisol_t15,cortisol_t30,cortisol_t4
 \section{Appendix: calculation of the CAR using the trapezoidal rule}
 \label{appendix:trapezRule}
 \subsection{AUCg}
-\label{sec:orga31db4d}
+\label{sec:org75b9c15}
 
 For subjects with regular measurement times, e.g.:
 \lstset{language=r,label= ,caption= ,captionpos=b,numbers=none}
@@ -966,7 +964,7 @@ range(dtLR.HC$AUCg-dtLR.HC$AUCg.pracma, na.rm=TRUE)
 \end{verbatim}
 
 \subsection{AUCb}
-\label{sec:orgefaeea0}
+\label{sec:org0cc1b47}
 
 Consider the individual:
 \lstset{language=r,label= ,caption= ,captionpos=b,numbers=none}
@@ -1014,7 +1012,7 @@ range(dtLR.HC$AUCi-dtLR.HC$AUCi.pracma, na.rm=TRUE)
 \section{Appendix: bias-correction using the linear regression}
 \label{appendix:lm}
 \subsection{Example}
-\label{sec:orgf327e16}
+\label{sec:org07e7293}
 We start with an example. Consider the following individual:
 \lstset{language=r,label= ,caption= ,captionpos=b,numbers=none}
 \begin{lstlisting}
@@ -1065,7 +1063,7 @@ estimate + 48.96 + 0.01 * 2.8 * 7.5 + 0.07 * 1.8 * 15 + 3.14 * 2.9 * 7.5
 While not perfect, the is much closer to the value obtained with 5 samples.
 
 \subsection{Theory}
-\label{sec:org28635e9}
+\label{sec:org1317950}
 
 Consider:
 \begin{itemize}

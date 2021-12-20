@@ -362,9 +362,7 @@ it varied between -13.61% and +17.96%. There was a tendency for a too
 low estimated value when using the 3-sample approach (-20.983,
 p=0.0339). There was no evidence that the error was AUC dependent for
 the AUCg (p=0.276) while there was rather strong evidence in favor of
-a linear trend for the AUCi (slope=0.1, p=0.002). There was no
-evidence for a systematic difference between the 3-sample AUC computed
-with =lm= and =auc= (p=0.92).
+a linear trend for the AUCi (slope=0.1, p=0.002). 
 
 #+name: fig:jak-errorAUC
 #+ATTR_LaTeX: :width 1\textwidth :placement [!h]
@@ -408,8 +406,8 @@ autoref:fig:fro-errorAUC. For the AUCg the error varied -501.0 to
 -38.21 and +54.97%. 4 observations were driving the error; for the
 rest of the observations the error varied between -141 and +123.75
 (-24.32% and 51.07%). There was no evidence for a biased estimate when
-using the 3-sample approach (p=0.304) nor for a systematic difference
-between the 3-sample AUC computed with =lm= and =auc= (p=0.87).
+using the 3-sample approach (e.g. AUCi p=0.304, AUCg p=0.419 with the
+trapezoidal rule).
 
 #+name: fig:fro-errorAUC
 #+ATTR_LaTeX: :width 1\textwidth :placement [!h]

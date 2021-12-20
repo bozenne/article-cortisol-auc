@@ -3,9 +3,9 @@
 ## Author: Brice Ozenne
 ## Created: maj 11 2020 (10:01) 
 ## Version: 
-## Last-Updated: nov 16 2021 (21:18) 
+## Last-Updated: dec 20 2021 (15:06) 
 ##           By: Brice Ozenne
-##     Update #: 122
+##     Update #: 126
 ##----------------------------------------------------------------------
 ## 
 ### Commentary: 
@@ -342,6 +342,11 @@ dt.evalPredictor[, estimator := factor(method,
 dt.evalPredictor[, timepoint.plot := paste0("samples: ",timepoint)]
 
 
+dt.cov <- as.data.table(unique(df.data[,c("CIMBI ID","Gender")]))
+dt.cov[["CIMBI ID"]] <- as.character(dt.cov[["CIMBI ID"]])
+dt.evalPredictor <- merge(x = cbind(id = gsub("_I1|_I2|_I3|_I4","",dt.evalPredictor$id2), dt.evalPredictor),
+                          y = dt.cov,
+                          by.x = "id", by.y = "CIMBI ID", all.x = TRUE, all.y = FALSE)
 
 ## ** Plot error training set
 gg.error <- ggplot(dt.evalPredictor, aes(x = timepoint, y = AUC.error, color = estimator))
@@ -403,8 +408,8 @@ gg.blandRerror
 
 ## * export
 ## results
-saveRDS(AUCg0.tablePerf, file = file.path(path.results,"AUCg-tablePerf.rds"))
-saveRDS(AUCi0.tablePerf, file = file.path(path.results,"AUCi-tablePerf.rds"))
+## saveRDS(AUCg0.tablePerf, file = file.path(path.results,"AUCg-tablePerf.rds"))
+## saveRDS(AUCi0.tablePerf, file = file.path(path.results,"AUCi-tablePerf.rds"))
 saveRDS(dt.evalPredictor, file = file.path(path.results,"dt-evalPredictor.rds"))
 saveRDS(trainL.AUC, file = file.path(path.results,"trainL_AUC.rds"))
 

@@ -3,9 +3,9 @@
 ## Author: Brice Ozenne
 ## Created: sep 10 2021 (09:20) 
 ## Version: 
-## Last-Updated: nov 16 2021 (21:21) 
+## Last-Updated: dec 20 2021 (15:46) 
 ##           By: Brice Ozenne
-##     Update #: 88
+##     Update #: 92
 ##----------------------------------------------------------------------
 ## 
 ### Commentary: 
@@ -233,13 +233,18 @@ summary(lm(error ~ estimate, data = AUC3L.Jak[method == "auc" & type=="AUCg"]))
 ##             Estimate Std. Error t value Pr(>|t|)
 ## (Intercept) -4.98126   25.17659  -0.198    0.845
 ## estimate     0.03264    0.02937   1.111    0.276
+summary(lm(error ~ 1, data = AUC3L.Jak[method == "auc" & type=="AUCi"]))
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)  
+## (Intercept)   20.983      9.421   2.227   0.0339 *
 summary(lm(error ~ estimate, data = AUC3L.Jak[method == "auc" & type=="AUCi"]))
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(>|t|)   
 ## (Intercept) 12.39183    8.39780   1.476  0.15121   
 ## estimate     0.10642    0.03073   3.463  0.00174 **
-t.test(AUC3L.Jak[method == "auc" & type=="AUCg",estimate],AUC3L.Jak[method == "lm" & type=="AUCg",estimate])
-## t = -0.10199, df = 58, p-value = 0.9191
+t.test(AUC3L.Jak[method == "auc" & type=="AUCg",estimate],AUC3L.Jak[method == "lm" & type=="AUCg",estimate],
+       paired = TRUE)
+## boxplot(AUC3L.Jak[method == "auc" & type=="AUCg",estimate],AUC3L.Jak[method == "lm" & type=="AUCg",estimate])
 
 ## double check
 range(AUC3L.Jak[method=="auc"&type=="AUCg",estimate]-dtL.Jak[sample %in% c(1,3,5), pracma::trapz(x=time, y=cortisol), by = "id"][[2]])
@@ -449,8 +454,25 @@ ggError2.Fro
 summary(lm(error ~ 1, data = AUC3L.FroT[method == "auc" & type=="AUCg"]))
 ##             Estimate Std. Error t value Pr(>|t|)
 ## (Intercept)    16.77      16.16   1.038    0.304
-t.test(AUC3L.FroT[method == "auc" & type=="AUCg",estimate],AUC3L.FroT[method == "lm" & type=="AUCg",estimate])
-## t = -0.16573, df = 96.937, p-value = 0.8687
+summary(lm(error ~ 1, data = AUC3L.FroT[method == "auc" & type=="AUCi"]))
+##             Estimate Std. Error t value Pr(>|t|)
+## (Intercept)    13.47      16.52   0.816    0.419
+summary(lm(error ~ 1, data = AUC3L.FroT[method == "lm" & type=="AUCi"]))
+##             Estimate Std. Error t value Pr(>|t|)
+## (Intercept)    8.532     16.402    0.52    0.605
+
+t.test(AUC3L.FroT[method == "auc" & type=="AUCg",estimate],AUC3L.FroT[method == "lm" & type=="AUCg",estimate],
+       paired = TRUE)
+## 	Paired t-test
+
+## data:  AUC3L.FroT[method == "auc" & type == "AUCg", estimate] and AUC3L.FroT[method == "lm" & type == "AUCg", estimate]
+## t = -11.969, df = 48, p-value = 5.134e-16
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -9.781890 -6.968032
+## sample estimates:
+## mean of the differences 
+##               -8.374961 
 
 ## double check
 range(AUC3L.FroT[method=="auc"&type=="AUCg",estimate]-dtL.FroT[sample %in% c(1,3,5), pracma::trapz(x=time, y=cortisol), by = "id"][[2]], na.rm=TRUE)

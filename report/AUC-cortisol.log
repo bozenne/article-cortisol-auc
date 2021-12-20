@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.8.26)  16 NOV 2021 21:31
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.8.26)  20 DEC 2021 15:55
 entering extended mode
 **./AUC-cortisol.tex
 (AUC-cortisol.tex
@@ -1118,12 +1118,12 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <8> on input line 126.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <6> on input line 126.
-<./figures/trajLCMM-5groups.pdf, id=97, 939.51pt x 448.67625pt>
+<./figures/trajLCMM-5groups.pdf, id=97, 939.51pt x 460.72125pt>
 File: ./figures/trajLCMM-5groups.pdf Graphic file (type pdf)
 <use ./figures/trajLCMM-5groups.pdf>
 Package pdftex.def Info: ./figures/trajLCMM-5groups.pdf  used on input line 141
 .
-(pdftex.def)             Requested size: 430.00462pt x 205.35295pt.
+(pdftex.def)             Requested size: 430.00462pt x 210.86578pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -1160,29 +1160,29 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `subscript' on input line 347.
 
-<./figures/AUCg-perf-boxplot.pdf, id=174, 939.51pt x 448.67625pt>
+<./figures/AUCg-perf-boxplot.pdf, id=174, 939.51pt x 460.72125pt>
 File: ./figures/AUCg-perf-boxplot.pdf Graphic file (type pdf)
 <use ./figures/AUCg-perf-boxplot.pdf>
 Package pdftex.def Info: ./figures/AUCg-perf-boxplot.pdf  used on input line 39
 5.
-(pdftex.def)             Requested size: 430.00462pt x 205.35295pt.
+(pdftex.def)             Requested size: 430.00462pt x 210.86578pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<./figures/AUCg-perf-cor.pdf, id=175, 939.51pt x 448.67625pt>
+<./figures/AUCg-perf-cor.pdf, id=175, 939.51pt x 460.72125pt>
 File: ./figures/AUCg-perf-cor.pdf Graphic file (type pdf)
 <use ./figures/AUCg-perf-cor.pdf>
 Package pdftex.def Info: ./figures/AUCg-perf-cor.pdf  used on input line 401.
-(pdftex.def)             Requested size: 430.00462pt x 205.35295pt.
+(pdftex.def)             Requested size: 430.00462pt x 210.86578pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<./figures/AUCg-perf-blandRelative.pdf, id=176, 939.51pt x 448.67625pt>
+<./figures/AUCg-perf-blandRelative.pdf, id=176, 939.51pt x 460.72125pt>
 File: ./figures/AUCg-perf-blandRelative.pdf Graphic file (type pdf)
 <use ./figures/AUCg-perf-blandRelative.pdf>
 Package pdftex.def Info: ./figures/AUCg-perf-blandRelative.pdf  used on input l
 ine 407.
-(pdftex.def)             Requested size: 430.00462pt x 205.35295pt.
+(pdftex.def)             Requested size: 430.00462pt x 210.86578pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
@@ -1196,17 +1196,17 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `subscript' on input line 413.
 
-<./figures/AUCi-perf-boxplot.pdf, id=228, 939.51pt x 325.215pt>
+<./figures/AUCi-perf-boxplot.pdf, id=223, 939.51pt x 325.215pt>
 File: ./figures/AUCi-perf-boxplot.pdf Graphic file (type pdf)
 <use ./figures/AUCi-perf-boxplot.pdf>
 Package pdftex.def Info: ./figures/AUCi-perf-boxplot.pdf  used on input line 42
 6.
 (pdftex.def)             Requested size: 430.00462pt x 148.84644pt.
-<./figures/AUCi-perf-cor.pdf, id=229, 939.51pt x 448.67625pt>
+<./figures/AUCi-perf-cor.pdf, id=224, 939.51pt x 460.72125pt>
 File: ./figures/AUCi-perf-cor.pdf Graphic file (type pdf)
 <use ./figures/AUCi-perf-cor.pdf>
 Package pdftex.def Info: ./figures/AUCi-perf-cor.pdf  used on input line 432.
-(pdftex.def)             Requested size: 430.00462pt x 205.35295pt.
+(pdftex.def)             Requested size: 430.00462pt x 210.86578pt.
 [9
 
  <./figures/AUCi-perf-boxplot.pdf> <./figures/AUCi-perf-cor.pdf>]
@@ -1238,16 +1238,16 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\new@ifnextchar' on input line 441.
 
-<./figures/gg-jak-descriptive.pdf, id=260, 722.7pt x 448.67625pt>
+<./figures/gg-jak-descriptive.pdf, id=250, 722.7pt x 448.67625pt>
 File: ./figures/gg-jak-descriptive.pdf Graphic file (type pdf)
 <use ./figures/gg-jak-descriptive.pdf>
 Package pdftex.def Info: ./figures/gg-jak-descriptive.pdf  used on input line 4
 58.
 (pdftex.def)             Requested size: 430.00462pt x 266.96227pt.
-<./figures/gg-jak-errorAUC.pdf, id=262, 722.7pt x 448.67625pt>
+<./figures/gg-jak-errorAUC.pdf, id=252, 722.7pt x 448.67625pt>
 File: ./figures/gg-jak-errorAUC.pdf Graphic file (type pdf)
 <use ./figures/gg-jak-errorAUC.pdf>
-Package pdftex.def Info: ./figures/gg-jak-errorAUC.pdf  used on input line 484.
+Package pdftex.def Info: ./figures/gg-jak-errorAUC.pdf  used on input line 482.
 
 (pdftex.def)             Requested size: 430.00462pt x 266.96227pt.
 
@@ -1256,20 +1256,20 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 [10
 
  <./figures/gg-jak-descriptive.pdf>]
-<./figures/gg-fro-descriptive.pdf, id=277, 722.7pt x 448.67625pt>
+<./figures/gg-fro-descriptive.pdf, id=267, 722.7pt x 448.67625pt>
 File: ./figures/gg-fro-descriptive.pdf Graphic file (type pdf)
 <use ./figures/gg-fro-descriptive.pdf>
 Package pdftex.def Info: ./figures/gg-fro-descriptive.pdf  used on input line 5
-07.
+05.
 (pdftex.def)             Requested size: 387.00153pt x 240.26192pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<./figures/gg-fro-errorAUC.pdf, id=279, 722.7pt x 448.67625pt>
+<./figures/gg-fro-errorAUC.pdf, id=269, 722.7pt x 448.67625pt>
 File: ./figures/gg-fro-errorAUC.pdf Graphic file (type pdf)
 <use ./figures/gg-fro-errorAUC.pdf>
-Package pdftex.def Info: ./figures/gg-fro-errorAUC.pdf  used on input line 532.
+Package pdftex.def Info: ./figures/gg-fro-errorAUC.pdf  used on input line 530.
 
 (pdftex.def)             Requested size: 430.00462pt x 266.96227pt.
 
@@ -1279,19 +1279,19 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 figures/gg-fro-errorAUC.pdf>] [13
 
 ]
-Overfull \hbox (34.09688pt too wide) in paragraph at lines 596--621
+Overfull \hbox (34.09688pt too wide) in paragraph at lines 594--619
  [][] 
  []
 
 
-Overfull \hbox (14.54901pt too wide) in paragraph at lines 627--639
+Overfull \hbox (14.54901pt too wide) in paragraph at lines 625--637
  [][] 
  []
 
 [14
 
 ]
-Overfull \hbox (56.62186pt too wide) in paragraph at lines 648--682
+Overfull \hbox (56.62186pt too wide) in paragraph at lines 646--680
  [] 
  []
 
@@ -1370,9 +1370,9 @@ Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy8.pfb><C:/Program Files/MiKTeX 2.9/f
 onts/type1/public/lm/lmtt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public
 /lm/lmtt12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols
 /msbm10.pfb>
-Output written on AUC-cortisol.pdf (24 pages, 2035186 bytes).
+Output written on AUC-cortisol.pdf (24 pages, 2378267 bytes).
 PDF statistics:
- 522 PDF objects out of 1000 (max. 8388607)
+ 512 PDF objects out of 1000 (max. 8388607)
  113 named destinations out of 1000 (max. 500000)
  244 words of extra memory for PDF output out of 10000 (max. 10000000)
 
