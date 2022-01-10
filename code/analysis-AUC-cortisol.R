@@ -3,9 +3,9 @@
 ## Author: Brice Ozenne
 ## Created: maj 11 2020 (10:01) 
 ## Version: 
-## Last-Updated: dec 20 2021 (15:06) 
+## Last-Updated: jan 10 2022 (11:14) 
 ##           By: Brice Ozenne
-##     Update #: 126
+##     Update #: 129
 ##----------------------------------------------------------------------
 ## 
 ### Commentary: 
@@ -319,6 +319,8 @@ trainL.AUC <- calcAUCgi(data = dtLR.HC,
                         var.id = "id2",
                         var.truth = c("AUCg.pracma","AUCi.pracma"))
 
+## trainL.AUC[,.(.(range(AUCi.estimate-AUCi.pracma-AUC.error))),by = "timepoint"]
+
 testL.AUC <- calcAUCgi(data = dtLR.HC,
                        newdata = dtLR.Case,
                        method = c("auc","lm"),
@@ -347,6 +349,9 @@ dt.cov[["CIMBI ID"]] <- as.character(dt.cov[["CIMBI ID"]])
 dt.evalPredictor <- merge(x = cbind(id = gsub("_I1|_I2|_I3|_I4","",dt.evalPredictor$id2), dt.evalPredictor),
                           y = dt.cov,
                           by.x = "id", by.y = "CIMBI ID", all.x = TRUE, all.y = FALSE)
+
+## dt.evalPredictor$AUCi.estimate - dt.evalPredictor$AUCi.pracma - dt.evalPredictor$AUC.error
+## range(dt.evalPredictor$AUCg.estimate - dt.evalPredictor$AUCg.pracma - dt.evalPredictor$AUC.error) 
 
 ## ** Plot error training set
 gg.error <- ggplot(dt.evalPredictor, aes(x = timepoint, y = AUC.error, color = estimator))

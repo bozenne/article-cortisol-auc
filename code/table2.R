@@ -3,9 +3,9 @@
 ## Author: Brice Ozenne
 ## Created: nov 16 2021 (16:53) 
 ## Version: 
-## Last-Updated: nov 16 2021 (22:18) 
+## Last-Updated: jan 10 2022 (11:15) 
 ##           By: Brice Ozenne
-##     Update #: 21
+##     Update #: 23
 ##----------------------------------------------------------------------
 ## 
 ### Commentary: 
@@ -32,10 +32,13 @@ dt.evalPredictor <- as.data.table(readRDS(file = file.path(path.results,"dt-eval
 ## source(file.path("code","analysis-AUC-cortisol.R"))
 
 ## * Processing
-AUCg0.tablePerf <- dt.evalPredictor[,.(median = paste0(round(median(AUC.error),0), " (",round(100*median(AUC.error/AUCg.pracma),1),"%)"),
-                                      "2.5% quantile" = paste0(round(quantile(AUC.error,probs = 0.025),0), " (",round(100*quantile(AUC.error/AUCg.pracma,probs =0.025),1),"%)"),
-                                      "97.5% quantile" = paste0(round(quantile(AUC.error,probs = 0.975),0), " (",round(100*quantile(AUC.error/AUCg.pracma,probs =0.975),1),"%)"),
-                                      IQR = paste0(round(IQR(AUC.error),0), " (",round(100*IQR(AUC.error/AUCg.pracma),1),"%)"),
+AUCg0.tablePerf <- dt.evalPredictor[,.(median = paste0(round(median(AUCg.estimate-AUCg.pracma),0),
+                                                       " (",round(100*median((AUCg.estimate-AUCg.pracma)/AUCg.pracma),1),"%)"),
+                                       "2.5% quantile" = paste0(round(quantile(AUCg.estimate-AUCg.pracma,probs = 0.025),0),
+                                                                " (",round(100*quantile((AUCg.estimate-AUCg.pracma)/AUCg.pracma,probs =0.025),1),"%)"),
+                                      "97.5% quantile" = paste0(round(quantile(AUCg.estimate-AUCg.pracma,probs = 0.975),0), " (",round(100*quantile((AUCg.estimate-AUCg.pracma)/AUCg.pracma,probs =0.975),1),"%)"),
+                                      IQR = paste0(round(IQR(AUCg.estimate-AUCg.pracma),0),
+                                                   " (",round(100*IQR((AUCg.estimate-AUCg.pracma)/AUCg.pracma),1),"%)"),
                                       correlation = round(cor(AUCg.estimate,AUCg.pracma),2)),
                                    by = c("dataset","method","timepoint")]
 setkeyv(AUCg0.tablePerf, c("dataset","method","timepoint"))
@@ -44,10 +47,10 @@ AUCg.tablePerf <- copy(AUCg0.tablePerf)
 AUCg.tablePerf[, method := ifelse(duplicated(method),"",method) , by = "dataset"]
 AUCg.tablePerf[duplicated(dataset), dataset := ""]
 
-AUCi0.tablePerf <- dt.evalPredictor[,.(median = round(median(AUC.error),0),
-                                      "2.5% quantile" = round(quantile(AUC.error,probs = 0.025),0),
-                                      "97.5% quantile" = round(quantile(AUC.error,probs = 0.975),0),
-                                      IQR = round(IQR(AUC.error),0),
+AUCi0.tablePerf <- dt.evalPredictor[,.(median = round(median(AUCi.estimate-AUCi.pracma),0),
+                                      "2.5% quantile" = round(quantile(AUCi.estimate-AUCi.pracma,probs = 0.025),0),
+                                      "97.5% quantile" = round(quantile(AUCi.estimate-AUCi.pracma,probs = 0.975),0),
+                                      IQR = round(IQR(AUCi.estimate-AUCi.pracma),0),
                                       correlation = round(cor(AUCi.estimate,AUCi.pracma),2)),
                                    by = c("dataset","method","timepoint")]
 setkeyv(AUCi0.tablePerf, c("dataset","method","timepoint"))
@@ -86,28 +89,28 @@ AUCg.tablePerf
 ##                dataset method timepoint        median 2.5% quantile 97.5% quantile         IQR correlation
 AUCi.tablePerf
 ##                dataset method timepoint median 2.5% quantile 97.5% quantile IQR correlation
-##  1: CV on training set    auc   0-15-30   -440          -847           -114 256        0.90
-##  2:                             0-15-45   -221          -456            -46 156        0.96
+##  1: CV on training set    auc   0-15-30    -85          -448            272 212        0.90
+##  2:                             0-15-45    -51          -271            148 134        0.96
 ##  3:                             0-15-60    -45          -241             92 105        0.94
-##  4:                             0-30-45   -210          -451            -33 138        0.97
+##  4:                             0-30-45    -37          -265            194 114        0.97
 ##  5:                             0-30-60     -8          -139            107  65        0.97
 ##  6:                             0-45-60    -36          -248            105 118        0.93
-##  7:                        lm   0-15-30      8          -199            173  99        0.94
-##  8:                             0-15-45      4          -118            111  57        0.97
+##  7:                        lm   0-15-30     11          -202            181 109        0.94
+##  8:                             0-15-45      5          -113            112  60        0.97
 ##  9:                             0-15-60      9          -185            151 101        0.94
-## 10:                             0-30-45      2          -119            119  64        0.97
+## 10:                             0-30-45      2          -119            134  63        0.97
 ## 11:                             0-30-60      0          -131            122  68        0.97
 ## 12:                             0-45-60     14          -185            156 116        0.93
-## 13:           test set    auc   0-15-30   -463         -1092           -119 314        0.92
-## 14:                             0-15-45   -244          -536            -55 186        0.97
+## 13:           test set    auc   0-15-30    -72          -584            313 252        0.92
+## 14:                             0-15-45    -43          -340            214 158        0.97
 ## 15:                             0-15-60    -38          -248            107 113        0.96
-## 16:                             0-30-45   -231          -528            -44 167        0.97
+## 16:                             0-30-45    -40          -322            190 140        0.97
 ## 17:                             0-30-60    -12          -182             97  78        0.98
 ## 18:                             0-45-60    -62          -299            119 118        0.95
-## 19:                        lm   0-15-30     10          -232            143 113        0.94
-## 20:                             0-15-45      3          -115            116  61        0.98
+## 19:                        lm   0-15-30     17          -228            199 112        0.94
+## 20:                             0-15-45      9          -128            152  78        0.98
 ## 21:                             0-15-60     11          -186            160 101        0.96
-## 22:                             0-30-45     -8          -149            103  71        0.98
+## 22:                             0-30-45      1          -133            115  79        0.98
 ## 23:                             0-30-60     -3          -166            105  79        0.98
 ## 24:                             0-45-60     -8          -241            177 116        0.95
 ##                dataset method timepoint median 2.5% quantile 97.5% quantile IQR correlation
