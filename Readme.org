@@ -1,3 +1,5 @@
 Contain the R code (folder) code used to generate the results for the
 cortisol AUC article.
-
+- =analysis-AUC-cortisol.R=: simulation study
+- =data-management.R=: data management for the real studies (export processed data in the folder data)
+- =re-analysis.R=: re-analysis of the real studies using 3 vs. 5 measurements to compute the CAR-AUCi 
