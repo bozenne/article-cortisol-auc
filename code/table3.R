@@ -3,9 +3,9 @@
 ## Author: Brice Ozenne
 ## Created: nov 16 2021 (18:18) 
 ## Version: 
-## Last-Updated: nov 16 2021 (22:18) 
+## Last-Updated: jan 25 2022 (16:19) 
 ##           By: Brice Ozenne
-##     Update #: 10
+##     Update #: 11
 ##----------------------------------------------------------------------
 ## 
 ### Commentary: 
@@ -51,6 +51,12 @@ ls.table3
 ## AUC with 5 samples 1715.996   594.2885 0.005899568 519.7552 2912.237
 ## AUC with 3 samples 1676.618   646.6305 0.012719381 375.0186 2978.218
 ## LM with 3 samples  1716.492   656.8608 0.012154163 393.5063 3039.478
+
+## $Hog2021
+##                        Value Std.Error     p-value     2.5 %    97.5 %
+## AUC with 5 samples -203.2433  71.42278 0.005749308 -343.2294 -63.25720
+## AUC with 3 samples -190.5116  69.12213 0.007381556 -325.9885 -55.03468
+## LM with 3 samples  -181.1763  72.83621 0.015183462 -323.9326 -38.41991
 
 ## ** docx
 myTable3.doc <- body_add_table(x = read_docx(), 
