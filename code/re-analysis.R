@@ -3,9 +3,9 @@
 ## Author: Brice Ozenne
 ## Created: sep 10 2021 (09:20) 
 ## Version: 
-## Last-Updated: jan 25 2022 (16:18) 
+## Last-Updated: jan 31 2022 (15:48) 
 ##           By: Brice Ozenne
-##     Update #: 111
+##     Update #: 112
 ##----------------------------------------------------------------------
 ## 
 ### Commentary: 
@@ -378,7 +378,7 @@ ggCortisol.Hog <- ggCortisol.Hog + geom_point() + geom_line()
 ggCortisol.Hog
 
 ## ** compute 3-points AUC
-AUC3W.Hog <- copy(calcAUCgi2(dtL.Hog))
+AUC3W.Hog <- copy(calcAUCgi2(dtL.Hog, timepoint = c(1,3,5)))
 AUC3W.Hog[,AUCg.error := AUCg.pracma - AUCg.estimate]
 AUC3W.Hog[,AUCi.error := AUCi.pracma - AUCi.estimate]
 
