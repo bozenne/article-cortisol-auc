@@ -3,9 +3,9 @@
 ## Author: Brice Ozenne
 ## Created: nov 16 2021 (16:53) 
 ## Version: 
-## Last-Updated: mar  1 2022 (17:19) 
+## Last-Updated: mar  9 2022 (16:13) 
 ##           By: Brice Ozenne
-##     Update #: 26
+##     Update #: 27
 ##----------------------------------------------------------------------
 ## 
 ### Commentary: 
@@ -30,6 +30,23 @@ path.results <- file.path(path,"results")
 dt.evalPredictor <- as.data.table(readRDS(file = file.path(path.results,"dt-evalPredictor.rds")))
 ## or
 ## source(file.path("code","analysis-AUC-cortisol.R"))
+
+## dt.evalPredictor[!duplicated(id2),table(Gender,dataset)]
+##         dataset
+## Gender   CV on training set test set
+##   Female                255      238
+##   Male                  210      106
+
+## dt.evalPredictor[!duplicated(id),table(Gender,dataset)]
+##         dataset
+## Gender   CV on training set test set
+##   Female                177      148
+##   Male                  145       67
+## dt.evalPredictor[!duplicated(id),table(dataset)]
+## dataset
+## CV on training set           test set 
+##                322                215 
+
 
 ## * Processing
 AUCg0.tablePerf <- dt.evalPredictor[,.(median = paste0(round(median(AUCg.estimate-AUCg.pracma),0),

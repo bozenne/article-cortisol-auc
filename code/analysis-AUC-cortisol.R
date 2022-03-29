@@ -3,9 +3,9 @@
 ## Author: Brice Ozenne
 ## Created: maj 11 2020 (10:01) 
 ## Version: 
-## Last-Updated: jan 10 2022 (11:14) 
+## Last-Updated: mar 29 2022 (18:24) 
 ##           By: Brice Ozenne
-##     Update #: 129
+##     Update #: 138
 ##----------------------------------------------------------------------
 ## 
 ### Commentary: 
@@ -56,6 +56,7 @@ df.data <- readxl::read_xlsx(file.path(path.data,"All_CAR_Arafat_second export.x
 col.newname <- c("CIMBI ID" = "id",
                  "Date of cortisol home samples" = "date",
                  "Person status" = "diseaseGroup",
+                 "Gender" = "gender",
                  "Time wake up on day for cortisol home samples" = "time_wake",
                  "Time of cortisol home sample 1" = "time_t0",
                  "Time of cortisol home sample 2" = "time_t15",
@@ -74,6 +75,12 @@ col.newname <- c("CIMBI ID" = "id",
 dtW.data <- as.data.table(df.data[,names(col.newname)])
 names(dtW.data) <- col.newname
 dtW.data[, id2 := if(.N>1){paste0(.SD$id,"_I",1:.N)}else{as.character(.SD$id)}, by = "id", .SDcols = "id"]
+
+## range(c(dtW.data$cortisol_t0,dtW.data$cortisol_t15,dtW.data$cortisol_t30,dtW.data$cortisol_t45,dtW.data$cortisol_t60),na.rm=TRUE)
+## 0.7  429.6
+##  table(rowSums(is.na(dtW.data[,.(cortisol_t0,cortisol_t15,cortisol_t30,cortisol_t45,cortisol_t60)])))
+##    0   1   2   3   4   5 
+## 898  50  12   2   3  19 
 
 ## *** compute time interval
 dtW.data[, interval_awaket0 := as.numeric(diff(as.difftime(c(.SD$time_wake,.SD$time_t0), format = "%H:%M:%S", units = "mins"))), by = "id2"]
@@ -115,15 +122,19 @@ ls.rm <- list(interval_awaket0 = dtW.data[interval_awaket0<0 | interval_awaket0>
 dtW.fulldata <-  dtW.data[id2 %in% unlist(ls.rm) == FALSE,]
 ## dtW.fulldata[, .(n = .N , n.id = length(unique(id)))]
 ##      n n.id
-## 1: 853  558
+## 1: 815  540
 ## dtW.fulldata[, .(n = .N , n.id = length(unique(id))), by = "diseaseGroup"]
 ##       diseaseGroup   n n.id
 ## 1: Healthy Control 470  325
 ## 2:            Case 345  215
+## dtW.fulldata[, .(n = .N , n.id = length(unique(id))), by = "gender"]
+##    gender   n n.id
+## 1:   Male 318  214
+## 2: Female 497  326
 
 dtL.fulldata <- melt(dtW.fulldata,
                      measure.vars = patterns(cortisol="^cortisol_", time="^min_t", weight="^weight_t"),
-                     id.vars = c("id","id2","diseaseGroup","AUCg","AUCi","AUCb"),
+                     id.vars = c("id","id2","diseaseGroup","gender","AUCg","AUCi","AUCb"),
                      variable.name = "sample")
 dtL.fulldata[,AUCg.pracma := trapz(x = time, y = cortisol), by = "id2"]
 dtL.fulldata[,AUCb.pracma := cortisol[1]*max(time), by = "id2"]
@@ -140,6 +151,7 @@ dtL.HC <- dtL.fulldata[diseaseGroup=="Healthy Control"]
 dtL.HC[, id2.num := as.numeric(as.factor(id2))]
 dtL.HC[,diseaseGroup:=NULL]
 ## table(dtL.HC$test.remove, useNA = "always")
+## sum(dtL.HC$AUCg.pracma > 2000) ## 25
 dtLR.HC <- dtL.HC[AUCg.pracma <= 2000]
 
 ## sum(is.na(dtL.HC$cortisol))
@@ -156,8 +168,15 @@ dtL.Case <- dtL.fulldata[diseaseGroup=="Case"]
 dtL.Case[, id2.num := as.numeric(as.factor(id2))]
 dtL.Case[,diseaseGroup:=NULL]
 ## table(dtL.HC$test.remove, useNA = "always")
-
+## sum(dtL.Case$AUCg.pracma > 5000) ## 5
 dtLR.Case <- dtL.Case[AUCg.pracma <= 5000]
+
+## dtL.Case[AUCg.pracma > 5000,table(id)]
+## 52395 
+##     5 
+
+##  length(unique(c(dtLR.Case$id2,dtLR.HC$id2)))
+## 809
 
 ## ** check
 table(duplicated(dtW.fulldata[,paste0(id,date)]))
@@ -168,10 +187,24 @@ range(dtL.HC$cortisol, na.rm = TRUE)
 ## [1]   0.7 284.1
 
 
+length(unique(dtLR.Case$id))+length(unique(dtLR.HC$id))
+## [1] 537
+length(unique(dtLR.Case$id2))+length(unique(dtLR.HC$id2))
+## [1] 809
+
 ## trapz(c(0,15,30,45,60),c(5,10,15,12,9))
 
 
 ## * descriptive graphs
+## dtSum <- rbind(dtLR.HC, dtLR.Case)[,.(median = median(cortisol),
+##                                       lower = quantile(cortisol,0.025),
+##                                       upper = quantile(cortisol,0.975)),
+##                                    by=c("gender","sample")]
+## gg_sumTraj <- ggplot(dtSum, aes(x=sample, group = gender, color = gender))
+## gg_sumTraj <- gg_sumTraj + geom_point(aes(y = median))
+## gg_sumTraj <- gg_sumTraj + geom_errorbar(aes(ymin = lower, ymax = upper))
+## gg_sumTraj
+
 IdU <- unique(dtL.HC$id2)
 n.Id <- length(IdU)
 
@@ -201,6 +234,10 @@ for(iG in 1:length(ls.groups25)){ ## iG <- 4
     print(vec.ggIndiv[[iG]])
 }
 dev.off()
+
+
+## length(unique(dtL.HC$id))+length(unique(dtL.Case$id))
+
 
 ## * clustering
 

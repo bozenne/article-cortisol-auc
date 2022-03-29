@@ -3,9 +3,9 @@
 ## Author: Brice Ozenne
 ## Created: maj 11 2020 (10:53) 
 ## Version: 
-## Last-Updated: nov 16 2021 (18:15) 
+## Last-Updated: mar 29 2022 (18:25) 
 ##           By: Brice Ozenne
-##     Update #: 198
+##     Update #: 200
 ##----------------------------------------------------------------------
 ## 
 ### Commentary: 
@@ -181,7 +181,6 @@ calcAUCgi <- function(data, newdata = NULL, method, timepoint,
 
                 iNewweight <- cbind(t(apply(iNewdataW[,.SD,.SDcols = iName.X.long],1,diff)),0)/2 + cbind(0,t(apply(iNewdataW[,.SD,.SDcols = iName.X.long],1,diff)))/2
                 iNewdataW[, c(iName.WY.long) := iNewweight*.SD, .SDcols = iName.Y.long] ## weighted Y
-
                 ## ** fit global model
                 if(iMethod == "lm"){
                     ff.lm <- as.formula(paste0(var.truth[1],"~offset(XXaucXX)+", paste(iName.WY.long, collapse =" + ")))
