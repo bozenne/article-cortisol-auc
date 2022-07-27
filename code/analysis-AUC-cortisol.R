@@ -3,9 +3,9 @@
 ## Author: Brice Ozenne
 ## Created: maj 11 2020 (10:01) 
 ## Version: 
-## Last-Updated: mar 29 2022 (18:24) 
+## Last-Updated: jul 26 2022 (17:03) 
 ##           By: Brice Ozenne
-##     Update #: 138
+##     Update #: 143
 ##----------------------------------------------------------------------
 ## 
 ### Commentary: 
@@ -470,6 +470,102 @@ dtTrain <- dtLR.HC[,.(id2,sample,time,cortisol,AUCg.pracma,AUCi.pracma)]
 dtTrain$id2 <- paste0("id",as.numeric(as.factor(dtTrain$id2)))
 setnames(dtTrain,old="id2",new="id")
 saveRDS(dtTrain, file = file.path(path.results,"input_calcAUCgi.rds"))
+
+## * Review comments
+## ** multicolinearity
+M.vif <- do.call(rbind,lapply(attr(trainL.AUC,"model"), function(iM){car::vif(iM$lm)}))
+range(M.vif)
+## [1] 1.253987 3.868554
+
+## ** repeated measurements
+
+## *** process data
+rmRepData <- function(data){
+    idI1 <- unique(data$id[grepl("I1",data$id2)])
+    idI2 <- unique(data$id[grepl("I2",data$id2)])
+    idI3 <- unique(data$id[grepl("I3",data$id2)])
+    idRep <- unique(c(intersect(idI1,idI2),intersect(idI2,idI3),intersect(idI2,idI3)))
+    idI1.2select <- intersect(idRep,idI1)
+    idI2.2select <- setdiff(intersect(idRep,idI2), idI1.2select)
+
+    out <- rbind(data[data$id %in% idRep == FALSE,],
+                 data[data$id2 %in% paste0(idI1.2select,"_I1"),],
+                 data[data$id2 %in% paste0(idI2.2select,"_I2"),])
+    return(out)
+}
+
+## HC
+length(unique(dtLR.HC$id))
+## [1] 322
+dtLR.HC1 <- rmRepData(dtLR.HC)
+
+length(unique(dtLR.HC1$id))
+## [1] 322
+
+## Case
+length(unique(dtLR.Case$id))
+## [1] 215
+dtLR.Case1 <- rmRepData(dtLR.Case)
+
+length(unique(dtLR.Case1$id))
+## [1] 215
+
+
+## *** train and test model
+trainL1.AUC <- calcAUCgi(data = dtLR.HC1,
+                         method = c("auc","lm"),
+                         timepoint = list("0-15-30" = c(1,2,3),
+                                          "0-15-45" = c(1,2,4),
+                                          "0-15-60" = c(1,2,5),
+                                          "0-30-45" = c(1,3,4),
+                                          "0-30-60" = c(1,3,5),
+                                          "0-45-60" = c(1,4,5)),
+                         var.timepoint = "sample",
+                         var.X = "time",
+                         var.Y = "cortisol",
+                         var.id = "id2",
+                         var.truth = c("AUCg.pracma","AUCi.pracma"))
+
+testL1.AUC <- calcAUCgi(data = dtLR.HC1,
+                       newdata = dtLR.Case1,
+                       method = c("auc","lm"),
+                       timepoint = list("0-15-30" = c(1,2,3),
+                                        "0-15-45" = c(1,2,4),
+                                        "0-15-60" = c(1,2,5),
+                                        "0-30-45" = c(1,3,4),
+                                        "0-30-60" = c(1,3,5),
+                                        "0-45-60" = c(1,4,5)),
+                       var.timepoint = "sample",
+                       var.X = "time",
+                       var.Y = "cortisol",
+                       var.id = "id2",
+                       var.truth = c("AUCg.pracma","AUCi.pracma"))
+
+## *** reproduce figure 1
+dt.evalPredictor1 <- rbind(cbind(trainL1.AUC, dataset = "CV on training set"),
+                           cbind(testL1.AUC, dataset = "test set"))
+dt.evalPredictor1[, dataset := factor(dataset, levels = c("CV on training set","test set"), labels = c("Healthy subjects","Case subject"))]
+dt.evalPredictor1[, estimator := factor(method,
+                                        levels = c("auc","lm"),
+                                        labels = c("trapezoidal rule","linear regression"))]
+dt.evalPredictor1[, timepoint.plot := paste0("samples: ",timepoint)]
+AUCg0.tablePerf1 <- dt.evalPredictor1[,.(correlation = round(cor(AUCg.estimate,AUCg.pracma),2)),
+                                     by = c("dataset","method","estimator","timepoint","timepoint.plot")]
+
+gg.AUCg.cor1 <- ggplot(dt.evalPredictor1, aes(x = AUCg.pracma, y = AUCg.estimate))
+gg.AUCg.cor1 <- gg.AUCg.cor1 + geom_abline(intercept=0, slope = 1, color = "purple", size = 1.5)
+gg.AUCg.cor1 <- gg.AUCg.cor1 + geom_point(alpha = 0.1)
+gg.AUCg.cor1 <- gg.AUCg.cor1 + facet_grid(estimator~timepoint.plot)
+gg.AUCg.cor1 <- gg.AUCg.cor1 + geom_smooth(size = 1.5, aes(color = dataset))
+gg.AUCg.cor1 <- gg.AUCg.cor1 + theme(legend.position = "bottom", text = element_text(size=15), axis.text.x=element_text(angle=90))
+gg.AUCg.cor1 <- gg.AUCg.cor1 + labs(color = "") + ylab("3-sample AUCg") + xlab("5-sample AUCg")
+gg.AUCg.cor1 <- gg.AUCg.cor1 + geom_text(data = AUCg0.tablePerf1[dataset == "Healthy subjects"],
+                                         mapping = aes(label = paste0("\u03C1=",round(correlation,3)), color = dataset, x = 500, y = 2500))
+gg.AUCg.cor1 <- gg.AUCg.cor1 + geom_text(data = AUCg0.tablePerf1[dataset == "Case subject"],
+                                         mapping = aes(label = paste0("\u03C1=",round(correlation,3)), color = dataset, x = 1500, y = 2500))
+gg.AUCg.cor1
+
+## ggsave(gg.AUCg.cor1, filename = file.path(path.results,"figure2aReviewer.pdf"), width = 13, device = cairo_pdf)
 
 ## * Sanity check
 if(FALSE){

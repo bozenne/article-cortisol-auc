@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.8.26)  10 JAN 2022 11:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.8.26)  24 JUN 2022 14:10
 entering extended mode
 **./AUC-cortisol.tex
 (AUC-cortisol.tex
@@ -1118,7 +1118,7 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <8> on input line 126.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <6> on input line 126.
-<./figures/trajLCMM-5groups.pdf, id=97, 939.51pt x 460.72125pt>
+<./figures/trajLCMM-5groups.pdf, id=89, 939.51pt x 460.72125pt>
 File: ./figures/trajLCMM-5groups.pdf Graphic file (type pdf)
 <use ./figures/trajLCMM-5groups.pdf>
 Package pdftex.def Info: ./figures/trajLCMM-5groups.pdf  used on input line 141
@@ -1145,7 +1145,7 @@ LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 2
  (C:\Program Files\MiKTeX 2.9\tex/latex/lm\t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-<./figures/cortisol-individual-alltraj.pdf, id=140, 722.7pt x 361.35pt>
+<./figures/cortisol-individual-alltraj.pdf, id=132, 722.7pt x 361.35pt>
 File: ./figures/cortisol-individual-alltraj.pdf Graphic file (type pdf)
 <use ./figures/cortisol-individual-alltraj.pdf>
 Package pdftex.def Info: ./figures/cortisol-individual-alltraj.pdf  used on inp
@@ -1160,7 +1160,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `subscript' on input line 347.
 
-<./figures/AUCg-perf-boxplot.pdf, id=174, 939.51pt x 460.72125pt>
+<./figures/AUCg-perf-boxplot.pdf, id=166, 939.51pt x 460.72125pt>
 File: ./figures/AUCg-perf-boxplot.pdf Graphic file (type pdf)
 <use ./figures/AUCg-perf-boxplot.pdf>
 Package pdftex.def Info: ./figures/AUCg-perf-boxplot.pdf  used on input line 39
@@ -1169,7 +1169,7 @@ Package pdftex.def Info: ./figures/AUCg-perf-boxplot.pdf  used on input line 39
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<./figures/AUCg-perf-cor.pdf, id=175, 939.51pt x 460.72125pt>
+<./figures/AUCg-perf-cor.pdf, id=167, 939.51pt x 460.72125pt>
 File: ./figures/AUCg-perf-cor.pdf Graphic file (type pdf)
 <use ./figures/AUCg-perf-cor.pdf>
 Package pdftex.def Info: ./figures/AUCg-perf-cor.pdf  used on input line 401.
@@ -1177,7 +1177,7 @@ Package pdftex.def Info: ./figures/AUCg-perf-cor.pdf  used on input line 401.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<./figures/AUCg-perf-blandRelative.pdf, id=176, 939.51pt x 460.72125pt>
+<./figures/AUCg-perf-blandRelative.pdf, id=168, 939.51pt x 460.72125pt>
 File: ./figures/AUCg-perf-blandRelative.pdf Graphic file (type pdf)
 <use ./figures/AUCg-perf-blandRelative.pdf>
 Package pdftex.def Info: ./figures/AUCg-perf-blandRelative.pdf  used on input l
@@ -1196,13 +1196,13 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `subscript' on input line 413.
 
-<./figures/AUCi-perf-boxplot.pdf, id=223, 939.51pt x 325.215pt>
+<./figures/AUCi-perf-boxplot.pdf, id=215, 939.51pt x 325.215pt>
 File: ./figures/AUCi-perf-boxplot.pdf Graphic file (type pdf)
 <use ./figures/AUCi-perf-boxplot.pdf>
 Package pdftex.def Info: ./figures/AUCi-perf-boxplot.pdf  used on input line 42
 6.
 (pdftex.def)             Requested size: 430.00462pt x 148.84644pt.
-<./figures/AUCi-perf-cor.pdf, id=224, 939.51pt x 460.72125pt>
+<./figures/AUCi-perf-cor.pdf, id=216, 939.51pt x 460.72125pt>
 File: ./figures/AUCi-perf-cor.pdf Graphic file (type pdf)
 <use ./figures/AUCi-perf-cor.pdf>
 Package pdftex.def Info: ./figures/AUCi-perf-cor.pdf  used on input line 432.
@@ -1238,45 +1238,44 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\new@ifnextchar' on input line 441.
 
-<./figures/gg-jak-descriptive.pdf, id=250, 722.7pt x 448.67625pt>
+<./figures/gg-jak-descriptive.pdf, id=242, 722.7pt x 505.89pt>
 File: ./figures/gg-jak-descriptive.pdf Graphic file (type pdf)
 <use ./figures/gg-jak-descriptive.pdf>
 Package pdftex.def Info: ./figures/gg-jak-descriptive.pdf  used on input line 4
 58.
-(pdftex.def)             Requested size: 430.00462pt x 266.96227pt.
-<./figures/gg-jak-errorAUC.pdf, id=252, 722.7pt x 448.67625pt>
+(pdftex.def)             Requested size: 430.00462pt x 301.00441pt.
+<./figures/gg-jak-errorAUC.pdf, id=244, 722.7pt x 460.72125pt>
 File: ./figures/gg-jak-errorAUC.pdf Graphic file (type pdf)
 <use ./figures/gg-jak-errorAUC.pdf>
 Package pdftex.def Info: ./figures/gg-jak-errorAUC.pdf  used on input line 482.
 
-(pdftex.def)             Requested size: 430.00462pt x 266.96227pt.
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
+(pdftex.def)             Requested size: 430.00462pt x 274.12903pt.
 [10
 
  <./figures/gg-jak-descriptive.pdf>]
-<./figures/gg-fro-descriptive.pdf, id=267, 722.7pt x 448.67625pt>
+<./figures/gg-fro-descriptive.pdf, id=260, 722.7pt x 460.72125pt>
 File: ./figures/gg-fro-descriptive.pdf Graphic file (type pdf)
 <use ./figures/gg-fro-descriptive.pdf>
 Package pdftex.def Info: ./figures/gg-fro-descriptive.pdf  used on input line 5
 05.
-(pdftex.def)             Requested size: 387.00153pt x 240.26192pt.
+(pdftex.def)             Requested size: 387.00153pt x 246.71191pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<./figures/gg-fro-errorAUC.pdf, id=269, 722.7pt x 448.67625pt>
+[11 <./figures/gg-jak-errorAUC.pdf>]
+<./figures/gg-fro-errorAUC.pdf, id=277, 722.7pt x 460.72125pt>
 File: ./figures/gg-fro-errorAUC.pdf Graphic file (type pdf)
 <use ./figures/gg-fro-errorAUC.pdf>
 Package pdftex.def Info: ./figures/gg-fro-errorAUC.pdf  used on input line 530.
 
-(pdftex.def)             Requested size: 430.00462pt x 266.96227pt.
+(pdftex.def)             Requested size: 430.00462pt x 274.12903pt.
+
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[11 <./figures/gg-jak-errorAUC.pdf>] [12 <./figures/gg-fro-descriptive.pdf> <./
-figures/gg-fro-errorAUC.pdf>] [13
+[12 <./figures/gg-fro-descriptive.pdf>] [13 <./figures/gg-fro-errorAUC.pdf>]
+[14
 
 ]
 Overfull \hbox (34.09688pt too wide) in paragraph at lines 594--619
@@ -1288,7 +1287,7 @@ Overfull \hbox (14.54901pt too wide) in paragraph at lines 625--637
  [][] 
  []
 
-[14
+[15
 
 ]
 Overfull \hbox (56.62186pt too wide) in paragraph at lines 646--680
@@ -1301,9 +1300,9 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[15
+[16
 
-] [16] [17] (AUC-cortisol.bbl) [18
+] [17] [18] (AUC-cortisol.bbl) [19
 
 ]
 (C:\Program Files\MiKTeX 2.9\tex/latex/listings\lstlang1.sty
@@ -1314,12 +1313,12 @@ File: lstlang2.sty 2020/03/24 1.8d listings language file
 )
 (C:\Program Files\MiKTeX 2.9\tex/latex/listings\lstlang3.sty
 File: lstlang3.sty 2020/03/24 1.8d listings language file
-) [19
+) [20
 
-] [20]
-[21
+] [21]
+[22
 
-] [22] [23
+] [23] [24
 
 ]
 \Changes@OutFile=\write6
@@ -1328,15 +1327,17 @@ File: lstlang3.sty 2020/03/24 1.8d listings language file
 \tf@loc=\write7
 \openout7 = `AUC-cortisol.loc'.
 
- [24] (AUC-cortisol.aux)
+ [25
+
+] (AUC-cortisol.aux)
 Package rerunfilecheck Info: File `AUC-cortisol.out' has not changed.
-(rerunfilecheck)             Checksum: FCB45B3CA29D690C765ECA7A7208E306;3549.
+(rerunfilecheck)             Checksum: 73926B7F59E104CAD43504EE881C82A8;3366.
  ) 
 Here is how much of TeX's memory you used:
- 27658 strings out of 478868
- 481878 string characters out of 2856724
- 1092596 words of memory out of 3000000
- 44897 multiletter control sequences out of 15000+600000
+ 27654 strings out of 478868
+ 481804 string characters out of 2856724
+ 1092485 words of memory out of 3000000
+ 44894 multiletter control sequences out of 15000+600000
  471166 words of font info for 81 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  114i,9n,117p,661b,1842s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1352,27 +1353,28 @@ pdfTeX warning (dest): name{Hfootnote.2} has been referenced but does not exist
 pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist
 , replaced by a fixed one
 
-{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Program Files
-/MiKTeX 2.9/fonts/enc/dvips/lm/lm-rm.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc
-/dvips/lm/lm-ec.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathit.e
-nc}{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ts1.enc}<C:/Program Files
-/MiKTeX 2.9/fonts/type1/public/lm/lmbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts
-/type1/public/lm/lmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/
-lmmi12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmmi7.pfb><C:/Pro
-gram Files/MiKTeX 2.9/fonts/type1/public/lm/lmmi8.pfb><C:/Program Files/MiKTeX 
-2.9/fonts/type1/public/lm/lmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pu
-blic/lm/lmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr17.pfb>
-<C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr6.pfb><C:/Program Files/M
-iKTeX 2.9/fonts/type1/public/lm/lmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/typ
-e1/public/lm/lmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmri12
-.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb><C:/Program 
-Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy8.pfb><C:/Program Files/MiKTeX 2.9/f
-onts/type1/public/lm/lmtt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public
-/lm/lmtt12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols
-/msbm10.pfb>
-Output written on AUC-cortisol.pdf (24 pages, 2378263 bytes).
+{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathex.enc}{C:/Program Files
+/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Program Files/MiKTeX 2.9/fonts
+/enc/dvips/lm/lm-rm.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.e
+nc}{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Program Fi
+les/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ts1.enc}<C:/Program Files/MiKTeX 2.9/fonts
+/type1/public/lm/lmbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/
+lmex10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmmi10.pfb><C:/Pr
+ogram Files/MiKTeX 2.9/fonts/type1/public/lm/lmmi12.pfb><C:/Program Files/MiKTe
+X 2.9/fonts/type1/public/lm/lmmi7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/
+public/lm/lmmi8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr10.pf
+b><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr12.pfb><C:/Program File
+s/MiKTeX 2.9/fonts/type1/public/lm/lmr17.pfb><C:/Program Files/MiKTeX 2.9/fonts
+/type1/public/lm/lmr6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lm
+r7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr8.pfb><C:/Program 
+Files/MiKTeX 2.9/fonts/type1/public/lm/lmri12.pfb><C:/Program Files/MiKTeX 2.9/
+fonts/type1/public/lm/lmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publi
+c/lm/lmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmtt10.pfb><C
+:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmtt12.pfb><C:/Program Files/M
+iKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on AUC-cortisol.pdf (25 pages, 2388952 bytes).
 PDF statistics:
- 512 PDF objects out of 1000 (max. 8388607)
- 113 named destinations out of 1000 (max. 500000)
- 244 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 517 PDF objects out of 1000 (max. 8388607)
+ 112 named destinations out of 1000 (max. 500000)
+ 228 words of extra memory for PDF output out of 10000 (max. 10000000)
 

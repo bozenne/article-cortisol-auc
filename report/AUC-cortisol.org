@@ -878,18 +878,76 @@ range(dtLR.HC$AUCi-dtLR.HC$AUCi.pracma, na.rm=TRUE)
 :CUSTOM_ID: appendix:lm
 :END:
 
-** Example
-We start with an example. Consider the following individual:
+Consider:
+- \(X_1\), \(X_2\), and \(X_3\): 3 cortisol measurements obtained at time \(0\), \(t_1\), and \(t_2\).
+- \(AUC_G\): the 5-sample area under the curve with respect to ground computed using the trapezoidal rule
+- \(\widetilde{AUC}_G\): the 3-sample area under the curve with respect to ground computed using the trapezoidal rule
+
+\bigskip
+
+Based on the measurement times we can associate a weight to each
+measurement:
+- \(w_1 = \frac{t_1}{2}\)
+- \(w_2 = \frac{t_1}{2}+\frac{t_2-t_1}{2}=\frac{t_2}{2}\)
+- \(w_3 = \frac{t_2-t_1}{2}\)
+such that the total weight is \(t_2\) and \(\widetilde{AUC}_G= w_1 X_1 + w_2 X_2 + w_3 X_3\)
+
+\bigskip
+
+Introducing the weighted measurements \(Z_j=w_j X_j\) for
+\(j\in\{1,2,3\}\), we fit the following linear model:
+#+BEGIN_EXPORT latex
+\begin{align*}
+AUC_G &= \widetilde{AUC}_G + \alpha + \beta * Z_1 + \gamma * Z_2 + \delta * Z_3 + \varepsilon \\
+ &= \alpha + (\beta+1) * Z_1 + (\gamma+1) * Z_2 + (\delta+1) * Z_3 + \varepsilon 
+\end{align*}
+#+END_EXPORT
+where \(\alpha\), \(\beta\), \(\gamma\), and \(\delta\) are
+  estimated based on the data to minimize the average squared
+  difference between the 5-sample \(AUC\) and the estimated
+  one. \(\varepsilon\) is the residual error.
+
+\bigskip
+  
+The resulting estimator, \(\widehat{AUC}_G\) can be seen as a
+corrected version of the trapezoidal rule, that accounts for varying
+measurement times. From the estimated model parameters
+(\(\widehat{\alpha}\), \(\widehat{\beta}\), \(\widehat{\gamma}\),
+and \(\widehat{\delta}\)), the \(AUC_G\) can be deduced by:
+#+BEGIN_EXPORT latex
+\[ \widehat{AUC}_G = \alpha + (\widehat{\beta}+1) * \frac{t_1}{2} * X_1 + (\widehat{\gamma}+1) * \frac{t_2}{2} * X_2 + (\widehat{\delta}+1) * \frac{t_2-t_1}{2} * X_3\]
+#+END_EXPORT
+  
+\clearpage
+
+*Example 1*: consider that the cortisol value is constant over
+time. Then the area below the curve from 0 to 30 is half of the area
+below the curve from 0 to 60. Choosing \(\widehat{\alpha}=0\) and
+\(\widehat{\beta}=\widehat{\gamma}=\widehat{\delta}=1\) lead to:
+#+BEGIN_EXPORT latex
+\begin{align*}
+\widehat{AUC}_G = 2 * \widehat{AUC}_G
+\end{align*}
+#+END_EXPORT
+which matches the 5-sample value.
+
+\bigskip
+
+*Example 2*: consider the following individual who perfectly followed
+ the measurement schedule:
 #+BEGIN_SRC R :exports both :results output :session *R* :cache no
-dtW.HC[id2=="11008"]
+dtLR.HC[id2=="11008",.(id,AUCg,sample,time,cortisol)]
 #+END_SRC
 
 #+RESULTS:
-:       id   id2   AUCg AUCg.pracma  c0 c15 c30 c45 c60
-: 1: 11008 11008 141.75      141.75 2.8 1.8 2.9 2.1 2.5
+:       id   AUCg sample time cortisol
+: 1: 11008 141.75      1    0      2.8
+: 2: 11008 141.75      2   15      1.8
+: 3: 11008 141.75      3   30      2.9
+: 4: 11008 141.75      4   45      2.1
+: 5: 11008 141.75      5   60      2.5
 
-who perfectly followed the measurement schedule. His \(AUC_g\) with
-respect to the ground is:
+His \(AUC_g\) with respect to the ground is:
 #+BEGIN_SRC R :exports both :results output :session *R* :cache no
 GS <- 2.8 * 7.5 + 1.8 * 15 + 2.9 * 15 + 2.1 * 15 + 2.5 * 7.5
 GS
@@ -909,50 +967,13 @@ estimate
  
 which is way too low. Fortunately we can use the correction proposed in autoref:tab:coeflm:
 #+BEGIN_SRC R :exports both :results output :session *R* :cache no
-estimate + 48.96 + 0.01 * 2.8 * 7.5 + 0.07 * 1.8 * 15 + 3.14 * 2.9 * 7.5
+48.96 + (0.01+1) * 2.8 * 7.5 + (0.07+1) * 1.8 * 15 + (3.14+1) * 2.9 * 7.5
 #+END_SRC
 
 #+RESULTS:
 : [1] 189.105
 While not perfect, the is much closer to the value obtained with 5 samples.
 
-** Theory
-
-Consider:
-- 3 cortisol measurements \(X_1\), \(X_2\), \(X_3\), at time \(0\), \(t_1\), and \(t_2\).
-- the 5-sample \(AUC_G\).
-- weights corresponding to the time intervals, i.e. \(w_1 =
-  \frac{t_1}{2}\), \(w_1 = \frac{t_2}{2}\), and \(w_3 =
-  \frac{t_2-t_1}{2}\).
-
-The \(AUC_G\) can be computed as:
-#+BEGIN_EXPORT latex
-\begin{align*}
-\widetilde{AUC}_G = w_1 * X_1 + w_2 * X_2 + w_3 * X_3
-\end{align*}
-#+END_EXPORT
-A more flexible approach would be to estimate it as:
-#+BEGIN_EXPORT latex
-\begin{align*}
-\widehat{AUC}_G = \alpha + \beta_1 * w_1 * X_1 + \beta_2 * w_2 * X_2 + \beta_3 * w_3 * X_3
-\end{align*}
-#+END_EXPORT
-where \(\alpha\), \(\beta_1\), \(\beta_2\), and \(\beta_3\) are
-estimated based on the data to minimize the average squared difference
-between the 5-sample \(AUC\) and the estimated one. 
-
-\bigskip
-
-For instance imagine that the cortisol value is constant over
-time. Then the area below the curve from 0 to 30 is half of the area
-below the curve from 0 to 60. Choosing \(\alpha=0\) and
-\(\beta_1=\beta_2=\beta_3\) leads to:
-#+BEGIN_EXPORT latex
-\begin{align*}
-\widehat{AUC}_G = 2 * \widehat{AUC}_G
-\end{align*}
-#+END_EXPORT
-which fixes the problem.
 
 * CONFIG :noexport:
 # #+LaTeX_HEADER:\affil{Department of Biostatistics, University of Copenhagen, Copenhagen, Denmark}

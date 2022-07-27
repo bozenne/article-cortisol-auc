@@ -1,4 +1,4 @@
-% Created 2022-01-10 ma 11:21
+% Created 2022-06-24 fr 14:10
 % Intended LaTeX compiler: pdflatex
 \documentclass[12pt]{article}
 
@@ -96,7 +96,7 @@ linkcolor=[rgb]{0,0,0.5},
  pdftitle={CAR project: computation of the AUC based on 3 sampling points},
  pdfkeywords={},
  pdfsubject={},
- pdfcreator={Emacs 27.2 (Org mode 9.4.4)},
+ pdfcreator={Emacs 27.2 (Org mode 9.5.2)},
  pdflang={English}
  }
 \begin{document}
@@ -104,7 +104,7 @@ linkcolor=[rgb]{0,0,0.5},
 \maketitle
 
 \section{Background}
-\label{sec:org6b65cbe}
+\label{sec:orgeab785a}
 
 Cortisol awakening response (CAR) describes the period of sharp
 increase in cortisol secretion in the first 60 min after awakening. It
@@ -145,7 +145,7 @@ estimation of the \(AUC_I\).
 \FloatBarrier
 
 \section{Aim}
-\label{sec:org2d36cb4}
+\label{sec:org826a539}
 
 The project's aim is to assess the reliability of an estimator of the
 CAR based on only 3-samples (instead of the usual 5). Three aspects
@@ -208,10 +208,10 @@ estimated using 5-measurements as a proxy for the "truth".
 \end{itemize}
 
 \section{Method}
-\label{sec:org9bbdfc4}
+\label{sec:org406638e}
 
 \subsection{Training data}
-\label{sec:orgceb6c8e}
+\label{sec:orgc8bc146}
 
 The full dataset contains 984 series of cortisol measurements both
 from healthy individuals and patients. The following exclusion
@@ -265,7 +265,7 @@ following measurements) were also excluded.
 \end{figure} 
 
 \subsection{Statistical analysis}
-\label{sec:org40670d8}
+\label{sec:orga26b8f8}
 
 \textbf{Exploratory}: Identifing typical shapes of trajectories can help to
 decide which three samples to use. For instance if two trajectories
@@ -307,10 +307,10 @@ it is not well defined as it requires to divide by \(AUC_I\) (which
 may be null).
 
 \section{Results}
-\label{sec:org75128ed}
+\label{sec:orgdc410ec}
 
 \subsection{Exploratory analysis}
-\label{sec:org9de8ae1}
+\label{sec:orgb8034cd}
 
 As shown in \autoref{tab:lcmm}, all LCMM but one converged (common
 variance, 6 classes). Visual inspection of the class trajectories
@@ -345,7 +345,7 @@ problematic since these represent a non-neglectable proportion of the
 sample.
 
 \subsection{Evaluation of the estimators: 3 vs. 5-sample \(AUC_G\)}
-\label{sec:org8156e7b}
+\label{sec:org197fc7f}
 
 From the estimated coefficients of the linear regression
 (\autoref{tab:coeflm}), it appears that the trapezoidal rule tends to
@@ -411,7 +411,7 @@ to see when considering the relative error along the AUCg values
 \clearpage
 
 \subsection{Evaluation of the estimators: 3 vs. 5-sample \(AUC_I\)}
-\label{sec:orgc27fb62}
+\label{sec:org86097ec}
 
 Results for the \(AUC_I\) are rather similar to the \(AUC_G\),
 e.g. see \autoref{fig:AUCi-perf-estimator},
@@ -437,9 +437,9 @@ since the \(AUC_G\) is larger (in absolute value) compared to the
 \clearpage
 
 \section{Application of the 3-sample AUC}
-\label{sec:orga2f9b4c}
+\label{sec:orgfe5ecea}
 \subsection{Re-analysis of \citep{jakobsen2016brain}}
-\label{sec:org6df9709}
+\label{sec:org50f3d8f}
 
 We will now replicate the study of Jakobsen et al (2016).
 
@@ -491,7 +491,7 @@ AUC. The effect seems a little bit attenuated and its estimation a bit
 less uncertain. Overall the p-values are very similar.
 
 \subsection{Re-analysis of Frokjaer et al 2014}
-\label{sec:org9183b88}
+\label{sec:org7a854d0}
 
 We will now replicate the analysis of Frojkaer et al (2014).
 
@@ -539,7 +539,7 @@ leading to larger p-values.
 \clearpage
 
 \section{Conclusion}
-\label{sec:org92bc790}
+\label{sec:org584de6d}
 
 We have shown that the best estimators of the \(AUC_G\) are:
 \begin{itemize}
@@ -587,7 +587,7 @@ trajectory (increasing, decreasing, V-shape).
 \clearpage 
 
 \section{Tables}
-\label{sec:org503929d}
+\label{sec:org8e9ba46}
 
 \begin{table}[!h]
 \centering
@@ -762,7 +762,7 @@ AUC with 5 samples & 1715.996 & 594.288 & 0.006 & 519.755 & 2912.237 \\
 \clearpage
 
 \section{References}
-\label{sec:orgdb493ee}
+\label{sec:org2524a3b}
 \begingroup
 \renewcommand{\section}[2]{}
 \bibliographystyle{apalike}
@@ -876,7 +876,7 @@ dtW.fulldata[is.na(AUCg),.(id2,cortisol_t0,cortisol_t15,cortisol_t30,cortisol_t4
 \section{Appendix: calculation of the CAR using the trapezoidal rule}
 \label{appendix:trapezRule}
 \subsection{AUCg}
-\label{sec:org4facb2a}
+\label{sec:org2de725a}
 
 For subjects with regular measurement times, e.g.:
 \lstset{language=r,label= ,caption= ,captionpos=b,numbers=none}
@@ -965,7 +965,7 @@ range(dtLR.HC$AUCg-dtLR.HC$AUCg.pracma, na.rm=TRUE)
 \end{verbatim}
 
 \subsection{AUCb}
-\label{sec:orgad30b84}
+\label{sec:orgfcfdb8f}
 
 Consider the individual:
 \lstset{language=r,label= ,caption= ,captionpos=b,numbers=none}
@@ -1012,22 +1012,77 @@ range(dtLR.HC$AUCi-dtLR.HC$AUCi.pracma, na.rm=TRUE)
 
 \section{Appendix: bias-correction using the linear regression}
 \label{appendix:lm}
-\subsection{Example}
-\label{sec:orge276483}
-We start with an example. Consider the following individual:
+Consider:
+\begin{itemize}
+\item \(X_1\), \(X_2\), and \(X_3\): 3 cortisol measurements obtained at time \(0\), \(t_1\), and \(t_2\).
+\item \(AUC_G\): the 5-sample area under the curve with respect to ground computed using the trapezoidal rule
+\item \(\widetilde{AUC}_G\): the 3-sample area under the curve with respect to ground computed using the trapezoidal rule
+\end{itemize}
+
+\bigskip
+
+Based on the measurement times we can associate a weight to each
+measurement:
+\begin{itemize}
+\item \(w_1 = \frac{t_1}{2}\)
+\item \(w_2 = \frac{t_1}{2}+\frac{t_2-t_1}{2}=\frac{t_2}{2}\)
+\item \(w_3 = \frac{t_2-t_1}{2}\)
+\end{itemize}
+such that the total weight is \(t_2\) and \(\widetilde{AUC}_G= w_1 X_1 + w_2 X_2 + w_3 X_3\)
+
+\bigskip
+
+Introducing the weighted measurements \(Z_j=w_j X_j\) for
+\(j\in\{1,2,3\}\), we fit the following linear model:
+\begin{align*}
+AUC_G &= \widetilde{AUC}_G + \alpha + \beta * Z_1 + \gamma * Z_2 + \delta * Z_3 + \varepsilon \\
+ &= \alpha + (\beta+1) * Z_1 + (\gamma+1) * Z_2 + (\delta+1) * Z_3 + \varepsilon 
+\end{align*}
+where \(\alpha\), \(\beta\), \(\gamma\), and \(\delta\) are
+  estimated based on the data to minimize the average squared
+  difference between the 5-sample \(AUC\) and the estimated
+  one. \(\varepsilon\) is the residual error.
+
+\bigskip
+
+The resulting estimator, \(\widehat{AUC}_G\) can be seen as a
+corrected version of the trapezoidal rule, that accounts for varying
+measurement times. From the estimated model parameters
+(\(\widehat{\alpha}\), \(\widehat{\beta}\), \(\widehat{\gamma}\),
+and \(\widehat{\delta}\)), the \(AUC_G\) can be deduced by:
+\[ \widehat{AUC}_G = \alpha + (\widehat{\beta}+1) * \frac{t_1}{2} * X_1 + (\widehat{\gamma}+1) * \frac{t_2}{2} * X_2 + (\widehat{\delta}+1) * \frac{t_2-t_1}{2} * X_3\]
+
+\clearpage
+
+\textbf{Example 1}: consider that the cortisol value is constant over
+time. Then the area below the curve from 0 to 30 is half of the area
+below the curve from 0 to 60. Choosing \(\widehat{\alpha}=0\) and
+\(\widehat{\beta}=\widehat{\gamma}=\widehat{\delta}=1\) lead to:
+\begin{align*}
+\widehat{AUC}_G = 2 * \widehat{AUC}_G
+\end{align*}
+which matches the 5-sample value.
+
+\bigskip
+
+\textbf{Example 2}: consider the following individual who perfectly followed
+ the measurement schedule:
 \lstset{language=r,label= ,caption= ,captionpos=b,numbers=none}
 \begin{lstlisting}
-dtW.HC[id2=="11008"]
+dtLR.HC[id2=="11008",.(id,AUCg,sample,time,cortisol)]
 \end{lstlisting}
 
 \begin{verbatim}
-      id   id2   AUCg AUCg.pracma  c0 c15 c30 c45 c60
-1: 11008 11008 141.75      141.75 2.8 1.8 2.9 2.1 2.5
+      id   AUCg sample time cortisol
+1: 11008 141.75      1    0      2.8
+2: 11008 141.75      2   15      1.8
+3: 11008 141.75      3   30      2.9
+4: 11008 141.75      4   45      2.1
+5: 11008 141.75      5   60      2.5
 \end{verbatim}
 
 
-who perfectly followed the measurement schedule. His \(AUC_g\) with
-respect to the ground is:
+His \(AUC_g\) with respect to the ground is:
 \lstset{language=r,label= ,caption= ,captionpos=b,numbers=none}
 \begin{lstlisting}
 GS <- 2.8 * 7.5 + 1.8 * 15 + 2.9 * 15 + 2.1 * 15 + 2.5 * 7.5
@@ -1054,7 +1109,7 @@ estimate
 which is way too low. Fortunately we can use the correction proposed in \autoref{tab:coeflm}:
 \lstset{language=r,label= ,caption= ,captionpos=b,numbers=none}
 \begin{lstlisting}
-estimate + 48.96 + 0.01 * 2.8 * 7.5 + 0.07 * 1.8 * 15 + 3.14 * 2.9 * 7.5
+48.96 + (0.01+1) * 2.8 * 7.5 + (0.07+1) * 1.8 * 15 + (3.14+1) * 2.9 * 7.5
 \end{lstlisting}
 
 \begin{verbatim}
@@ -1062,39 +1117,4 @@ estimate + 48.96 + 0.01 * 2.8 * 7.5 + 0.07 * 1.8 * 15 + 3.14 * 2.9 * 7.5
 \end{verbatim}
 
 While not perfect, the is much closer to the value obtained with 5 samples.
-
-\subsection{Theory}
-\label{sec:orge4d8f6a}
-
-Consider:
-\begin{itemize}
-\item 3 cortisol measurements \(X_1\), \(X_2\), \(X_3\), at time \(0\), \(t_1\), and \(t_2\).
-\item the 5-sample \(AUC_G\).
-\item weights corresponding to the time intervals, i.e. \(w_1 =
-  \frac{t_1}{2}\), \(w_1 = \frac{t_2}{2}\), and \(w_3 =
-  \frac{t_2-t_1}{2}\).
-\end{itemize}
-
-The \(AUC_G\) can be computed as:
-\begin{align*}
-\widetilde{AUC}_G = w_1 * X_1 + w_2 * X_2 + w_3 * X_3
-\end{align*}
-A more flexible approach would be to estimate it as:
-\begin{align*}
-\widehat{AUC}_G = \alpha + \beta_1 * w_1 * X_1 + \beta_2 * w_2 * X_2 + \beta_3 * w_3 * X_3
-\end{align*}
-where \(\alpha\), \(\beta_1\), \(\beta_2\), and \(\beta_3\) are
-estimated based on the data to minimize the average squared difference
-between the 5-sample \(AUC\) and the estimated one. 
-
-\bigskip
-
-For instance imagine that the cortisol value is constant over
-time. Then the area below the curve from 0 to 30 is half of the area
-below the curve from 0 to 60. Choosing \(\alpha=0\) and
-\(\beta_1=\beta_2=\beta_3\) leads to:
-\begin{align*}
-\widehat{AUC}_G = 2 * \widehat{AUC}_G
-\end{align*}
-which fixes the problem.
 \end{document}

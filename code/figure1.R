@@ -3,9 +3,9 @@
 ## Author: Brice Ozenne
 ## Created: mar 28 2022 (12:05) 
 ## Version: 
-## Last-Updated: mar 29 2022 (18:32) 
+## Last-Updated: maj  4 2022 (18:21) 
 ##           By: Brice Ozenne
-##     Update #: 13
+##     Update #: 18
 ##----------------------------------------------------------------------
 ## 
 ### Commentary: 
@@ -166,6 +166,48 @@ ggsave(gg.figure1, filename = file.path(path.results,"figure1.png"), width = 13)
 ## dtL.HC[(sample == 1 & time==0) & (sample == 2 & time==15) & (sample == 3 & time==30) & (sample == 4 & time==45) & (sample == 5 & time==60)]
 ## dtL.HC[(sample == 1 & time==0) & (sample == 2 & time==15) & (sample == 3 & time==30) & (sample == 4 & time==45) & (sample == 5 & time==60)]
 
+## * LMM
+if(FALSE){
+    library(LMMstar)
+    dtLR.HC$sample.char <- as.factor(dtLR.HC$sample)
+
+    e.lmm <- lmm(cortisol ~ sample.char*gender, repetition = gender ~ sample.char|id2, data = dtLR.HC, structure = "UN",
+                 control = list(optimizer = "FS"))
+    summary(e.lmm)
+    ##                         estimate    se      df  lower  upper p.value    
+    ## (Intercept)               12.242 0.355 254.093 11.544 12.941 < 0.001 ***
+    ## sample.char2               2.196 0.272 253.782   1.66  2.731 < 0.001 ***
+    ## sample.char3               4.443 0.389 253.867  3.676  5.209 < 0.001 ***
+    ## sample.char4               3.957 0.435  253.85    3.1  4.815 < 0.001 ***
+    ## sample.char5               2.151  0.43 253.803  1.304  2.998 < 0.001 ***
+    ## genderMale                -0.793 0.521  450.02 -1.817  0.231 0.12886    
+    ## sample.char2:genderMale    0.333  0.43 424.371 -0.513  1.179 0.43978    
+    ## sample.char3:genderMale   -0.526  0.54  461.26 -1.587  0.535 0.33080    
+    ## sample.char4:genderMale   -1.713 0.596 462.339 -2.884 -0.542 0.00424  **
+    ## sample.char5:genderMale   -1.878 0.598 460.851 -3.053 -0.703 0.00179  **
+    summary(anova(e.lmm, effects = c(slope34 = "sample.char4:genderMale - sample.char3:genderMale = 0",
+                                     slope45 = "sample.char5:genderMale - sample.char4:genderMale = 0")),
+            method = "none")
+    ##  - Univariate Wald test (individual null hypotheses) 
+    ##          estimate        se        df     lower   upper  p.value   
+    ## slope34  -1.18729   0.38052 414.81260  -1.93528 -0.4393 0.001934 **
+    ## slope45  -0.16525   0.33485 425.54886  -0.82342  0.4929 0.621912   
+
+    summary(anova(e.lmm, effects = c(AUC = "60*genderMale+15*sample.char2:genderMale+15*sample.char3:genderMale+15*sample.char4:genderMale+7.5*sample.char5:genderMale=0")),
+            method = "none")
+    ##  - Univariate Wald test (individual null hypotheses) 
+    ##     estimate       se       df    lower  upper  p.value   
+    ## AUC  -90.237   31.089  455.784 -151.333 -29.14 0.003882 **
+
+    library(data.table)
+    GS <- predict(e.lmm, newdata = unique(dtLR.HC[,c("sample.char","gender")]), keep.newdata = TRUE)
+    diff(GS[,pracma::trapz((as.numeric(sample.char)-1)*15,estimate), by = "gender"][[2]])
+    ## [1] 90.23659
+
+    ## autoplot.lmm(e.lmm)
+    ## dummy.coef(e.lmm)
+
+}
 ## 
 ##----------------------------------------------------------------------
 ### figure1.R ends here
