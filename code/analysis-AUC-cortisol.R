@@ -3,9 +3,9 @@
 ## Author: Brice Ozenne
 ## Created: maj 11 2020 (10:01) 
 ## Version: 
-## Last-Updated: jul 26 2022 (17:03) 
+## Last-Updated: sep 29 2022 (12:15) 
 ##           By: Brice Ozenne
-##     Update #: 143
+##     Update #: 150
 ##----------------------------------------------------------------------
 ## 
 ### Commentary: 
@@ -178,6 +178,13 @@ dtLR.Case <- dtL.Case[AUCg.pracma <= 5000]
 ##  length(unique(c(dtLR.Case$id2,dtLR.HC$id2)))
 ## 809
 
+
+## length(unique(dtL.Case$id2))
+## df.data.Case <- df.data[df.data[["CIMBI ID"]] %in% unique(dtL.Case$id),]
+## table(df.data.Case[["Project (primary)"]])
+## ttt <- table(df.data.Case[["Project (primary)"]][!duplicated(df.data.Case[["CIMBI ID"]])])
+## rbind(cbind(ttt), total = sum(ttt))
+
 ## ** check
 table(duplicated(dtW.fulldata[,paste0(id,date)]))
 ## FALSE 
@@ -189,10 +196,18 @@ range(dtL.HC$cortisol, na.rm = TRUE)
 
 length(unique(dtLR.Case$id))+length(unique(dtLR.HC$id))
 ## [1] 537
+
 length(unique(dtLR.Case$id2))+length(unique(dtLR.HC$id2))
 ## [1] 809
 
-## trapz(c(0,15,30,45,60),c(5,10,15,12,9))
+## ** number of repetitions
+table(c(table(dtLR.Case$id), table(dtLR.HC$id)))
+##   5  10  15  20 
+## 319 174  34  10 
+
+## Number of samples break down per number of individual repetitions
+319 + 2*174 + 3*34 + 4*10 
+## 809
 
 
 ## * descriptive graphs
